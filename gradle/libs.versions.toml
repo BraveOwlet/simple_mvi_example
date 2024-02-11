@@ -22,6 +22,7 @@ lifecycle = "2.7.0"
 ksp = "1.9.22-1.0.16"
 dagger-hilt = "2.50"
 dagger-hilt-navigation = "1.1.0"
+koin = "3.6.0-wasm-alpha2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -49,6 +50,13 @@ compose-material3 = { module = "androidx.compose.material3:material3", version.r
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
 dagger-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "dagger-hilt-navigation" }
+
+koin-core = {group = "io.insert-koin", name = "koin-core", version.ref = "koin"}
+koin-core-coroutines = {group = "io.insert-koin", name = "koin-core-coroutines", version.ref = "koin"}
+koin-compose = {group = "io.insert-koin", name = "koin-compose", version.ref = "koin"}
+koin-android = {group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
+koin-android-navigation = {group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin"}
+koin-android-compose = {group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -12,44 +12,19 @@ import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import ru.braveowlet.kmmpr.features.first_screen.mvi.ScreenAction
-import ru.braveowlet.kmmpr.features.first_screen.mvi.ScreenController
-import ru.braveowlet.kmmpr.features.first_screen.mvi.ScreenEvent
+import ru.braveowlet.kmmpr.features.first_screen.mvi.ScreenState
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun FirstScreenContent(
-    controller: ScreenController
+    state: ScreenState,
+    snackbarHostState: SnackbarHostState,
+    onClickButton: () -> Unit,
 ) {
-    val scope = rememberCoroutineScope()
-    val snackbarHostState = remember { SnackbarHostState() }
-
-    val state by controller.getState(scope).collectAsState()
-
-    LaunchedEffect(Unit) {
-        controller.eventFlow().collect {
-            when (it) {
-                is ScreenEvent.ShowMessage -> snackbarHostState.showSnackbar(it.message)
-            }
-        }
-    }
-
-    fun acceptAction(action: ScreenAction){
-        scope.launch {
-            controller.acceptAction(action)
-        }
-    }
-
     MaterialTheme {
         Scaffold(
             snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
@@ -64,7 +39,7 @@ fun FirstScreenContent(
                 Text(state.data)
 
                 Button(
-                    onClick = { acceptAction(ScreenAction.ClickButton) }
+                    onClick = onClickButton
                 ) {
                     Text("Click")
                 }

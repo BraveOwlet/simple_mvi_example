@@ -96,10 +96,16 @@ open class MviController
             .also { stateFlow = it }
 
     override suspend fun acceptAction(action: Action) {
+        logDebug("MVI acceptAction => $action")
+        logDebug("MVI actionsFlow.subscriptionCount => ${actionsFlow.subscriptionCount.value}")
         actionsFlow.emit(action)
     }
 
     override fun eventFlow(): SharedFlow<Event> = eventFlow
+
+    override fun logDebug(message: String) {
+        logger.log(tag, message)
+    }
 }
 
 private const val ACTIONS_REPLAY_COUNT = 0

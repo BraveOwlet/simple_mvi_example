@@ -4,8 +4,5 @@ interface MviLogger {
     fun log(tag: String, message: String)
 }
 
-object MviLoggerDefault : MviLogger {
-    override fun log(tag: String, message: String) {
-        println("MVI_$tag $message")
-    }
-}
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect object MviLoggerDefault : MviLogger

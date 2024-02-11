@@ -31,15 +31,20 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
+            implementation(projects.common.mvi)
             implementation(projects.features.firstScreen)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+
+            implementation(libs.koin.core)
         }
     }
 }

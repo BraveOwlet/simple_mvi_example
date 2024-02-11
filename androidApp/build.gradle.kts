@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -49,8 +47,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
 
-    //Hilt
-    ksp(libs.dagger.hilt.compiler)
-    implementation(libs.dagger.hilt.android)
-    implementation(libs.dagger.hilt.navigation.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 }

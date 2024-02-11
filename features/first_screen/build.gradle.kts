@@ -1,12 +1,9 @@
-import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.dagger.hilt)
 }
 
 kotlin {
@@ -24,40 +21,29 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "Features.FirstScreen"
             isStatic = true
         }
     }
+
     sourceSets {
         androidMain.dependencies {
-            implementation(libs.kotlinx.coroutines)
             implementation(libs.compose.ui.tooling.preview)
 
             implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-            configurations["kspAndroid"].dependencies.addAll(
-                listOf(
-                    DefaultExternalModuleDependency(
-                        libs.androidx.lifecycle.compiler.get().group,
-                        libs.androidx.lifecycle.compiler.get().name,
-                        libs.androidx.lifecycle.compiler.get().version?:""
-                    ),
-                    DefaultExternalModuleDependency(
-                        libs.dagger.hilt.compiler.get().group,
-                        libs.dagger.hilt.compiler.get().name,
-                        libs.dagger.hilt.compiler.get().version?:""
-                    ),
-                )
-
-            )
-            implementation(libs.dagger.hilt.android)
-            implementation(libs.dagger.hilt.navigation.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.android.compose)
+            implementation(libs.koin.android.navigation)
         }
         commonMain.dependencies {
-            implementation(project(":common:mvi"))
+            implementation(projects.common.mvi)
+
             implementation(libs.kotlinx.coroutines)
+            implementation(libs.koin.core)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
