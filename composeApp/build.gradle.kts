@@ -10,7 +10,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "17"
+                jvmTarget = libs.versions.java.version.int.get()
             }
         }
     }
@@ -83,8 +83,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
+        targetCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
     }
     dependencies{
         debugImplementation(libs.compose.ui.tooling)
