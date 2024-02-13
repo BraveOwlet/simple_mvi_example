@@ -1,10 +1,8 @@
-import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
 }
 
@@ -23,19 +21,26 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
             isStatic = true
+            baseName = "ComposeApp"
         }
     }
     
     sourceSets {
         androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.material3)
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.koin.android)
+            implementation(libs.koin.android.compose)
+            implementation(libs.koin.android.navigation)
         }
         commonMain.dependencies {
             implementation(projects.common.mvi)
-            implementation(projects.features.firstScreen)
+            implementation(projects.common.mviKoin)
+            implementation(projects.common.logger)
+            implementation(projects.features.mainScreen)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -53,13 +58,18 @@ android {
     namespace = "ru.braveowlet.kmmpr"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
+        applicationId = "ru.braveowlet.kmmpr"
         minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0"
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+    buildFeatures {
+        compose = true
     }
-
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -70,7 +80,11 @@ android {
             isMinifyEnabled = false
         }
     }
-    dependencies {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    dependencies{
         debugImplementation(libs.compose.ui.tooling)
     }
 }

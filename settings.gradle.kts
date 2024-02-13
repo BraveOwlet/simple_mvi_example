@@ -18,8 +18,9 @@ dependencyResolutionManagement {
     }
 }
 
-include(":androidApp")
 include(":composeApp")
 include(":common:mvi")
+include(":common:mvi-koin")
+include(":common:logger")
 
-include(":features:first_screen")
+include(":features:main_screen")

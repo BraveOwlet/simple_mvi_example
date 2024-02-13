@@ -17,7 +17,7 @@ fun interface MviEventProducer
     override suspend fun invoke(effect: Effect, state : State): Flow<Event>
 }
 
-fun interface MviStateProducer
+fun interface MviStateReducer
 <Effect : MviEffect, State : MviState> : suspend (Effect, State) -> State {
     override suspend fun invoke(effect: Effect, previousState: State): State
 }

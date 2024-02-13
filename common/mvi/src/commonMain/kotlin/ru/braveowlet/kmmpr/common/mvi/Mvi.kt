@@ -9,4 +9,5 @@ interface Mvi<Action : MviAction, Event : MviEvent, State : MviState> {
     fun getState(scope: CoroutineScope): StateFlow<State>
     fun eventFlow(): SharedFlow<Event>
     fun logDebug(message: String)
+    fun log(message: String)
 }

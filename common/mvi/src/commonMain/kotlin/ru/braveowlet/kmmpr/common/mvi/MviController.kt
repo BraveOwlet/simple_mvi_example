@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import ru.braveowlet.kmmpr.common.logger.Logger
 
 open class MviController
 <Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState>(
@@ -23,10 +24,10 @@ open class MviController
     val actor: MviActor<Action, Effect, State>,
     val boot: MviBoot<Effect>,
     val eventProducer: MviEventProducer<Effect, Event, State>,
-    val stateProducer: MviStateProducer<Effect, State>,
+    val stateReducer: MviStateReducer<Effect, State>,
     val tag: String,
-    val logEnable: Boolean = true,
-    val logger: MviLogger = MviLoggerDefault,
+    val logEnable: Boolean,
+    val logger: Logger,
 ) : Mvi<Action, Event, State> {
 
     private var stateFlow: StateFlow<State>? = null
@@ -46,11 +47,13 @@ open class MviController
         onBufferOverflow = BufferOverflow.SUSPEND
     )
 
-    private fun log(message: String) {
+    override fun log(message: String) {
         if (logEnable) {
             logger.log(tag, message)
         }
     }
+
+    override fun logDebug(message: String) = logger.log(tag, message)
 
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -62,22 +65,20 @@ open class MviController
             .flatMapMerge { actor(it, currentState) },
     )
 
-    private fun Flow<Effect>.produceEvent(): Flow<Effect> = this
-        .onEach { effect ->
-            eventFlow.emitAll(
-                eventProducer(effect, currentState).onEach { log("EVENT -> $it") }
-            )
-        }
+    private fun Flow<Effect>.produceEvent(): Flow<Effect> = this.onEach { effect ->
+        eventFlow.emitAll(
+            eventProducer(effect, currentState).onEach { log("EVENT -> $it") }
+        )
+    }
 
-    private fun Flow<Effect>.produceState(): Flow<State> = this
-        .map {
-            stateProducer(it, currentState).also { newState ->
-                if (currentState != newState) {
-                    log("OLD STATE -> $currentState")
-                    log("NEW STATE -> $newState")
-                }
+    private fun Flow<Effect>.reduceState(): Flow<State> = this.map {
+        stateReducer(it, currentState).also { newState ->
+            if (currentState != newState) {
+                log("OLD STATE -> $currentState")
+                log("NEW STATE -> $newState")
             }
         }
+    }
 
     private fun Flow<State>.stateIn(scope: CoroutineScope): StateFlow<State> = this
         .stateIn(
@@ -90,22 +91,14 @@ open class MviController
         stateFlow ?: mergeBootAndActionEffect()
             .filterNotNull()
             .produceEvent()
-            .produceState()
+            .reduceState()
             .distinctUntilChanged()
             .stateIn(scope)
             .also { stateFlow = it }
 
-    override suspend fun acceptAction(action: Action) {
-        logDebug("MVI acceptAction => $action")
-        logDebug("MVI actionsFlow.subscriptionCount => ${actionsFlow.subscriptionCount.value}")
-        actionsFlow.emit(action)
-    }
+    override suspend fun acceptAction(action: Action) = actionsFlow.emit(action)
 
     override fun eventFlow(): SharedFlow<Event> = eventFlow
-
-    override fun logDebug(message: String) {
-        logger.log(tag, message)
-    }
 }
 
 private const val ACTIONS_REPLAY_COUNT = 0
