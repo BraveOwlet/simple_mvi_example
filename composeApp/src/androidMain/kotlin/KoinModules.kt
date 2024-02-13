@@ -1,8 +1,7 @@
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import ru.braveowlet.kmmpr.features.main_screen.mvi.MainScreenViewModel
+import ru.braveowlet.kmmpr.features.main_screen.mainScreenModule
 
-actual fun koinMviControllersModules(): Module = module {
-    viewModel { MainScreenViewModel() }
-}
+private fun androidModule() = module {}
+
+actual fun appModules(): List<Module> = androidModule() + mainScreenModule()

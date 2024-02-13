@@ -1,7 +1,9 @@
 import androidx.compose.runtime.Composable
-import ru.braveowlet.kmmpr.features.main_screen.MainScreen
+import org.koin.compose.koinInject
+import ru.braveowlet.kmmpr.features.main_screen.MainScreenFeatureApi
 
 @Composable
 fun App() {
-    MainScreen()
+    val mainScreenFeatureApi = koinInject<MainScreenFeatureApi>()
+    mainScreenFeatureApi.mainScreen()
 }

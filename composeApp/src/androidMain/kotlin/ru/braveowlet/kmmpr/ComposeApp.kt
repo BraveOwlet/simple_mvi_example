@@ -1,7 +1,7 @@
 package ru.braveowlet.kmmpr
 
 import android.app.Application
-import koinMviControllersModules
+import appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,7 +11,7 @@ class ComposeApp : Application(){
         super.onCreate()
         startKoin {
             androidContext(this@ComposeApp)
-            modules(koinMviControllersModules())
+            modules(appModules())
         }
     }
 }

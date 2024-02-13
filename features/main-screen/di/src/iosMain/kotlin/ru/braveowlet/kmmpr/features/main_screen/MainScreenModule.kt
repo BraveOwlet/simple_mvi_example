@@ -1,14 +1,10 @@
-import org.koin.core.context.startKoin
+package ru.braveowlet.kmmpr.features.main_screen
+
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import ru.braveowlet.kmmpr.features.main_screen.mvi.MainScreenViewModel
 
-fun initKoin(){
-    startKoin {
-        modules(koinMviControllersModules())
-    }
-}
-
-actual fun koinMviControllersModules(): Module = module {
+actual fun mainScreenModule() : Module = module {
+    single<MainScreenFeatureApi> { MainScreenFeatureImpl() }
     single<MainScreenViewModel> { MainScreenViewModel() }
 }

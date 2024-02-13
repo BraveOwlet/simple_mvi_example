@@ -2,7 +2,7 @@ import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
 }
 
@@ -14,34 +14,24 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            isStatic = true
-            baseName = "ComposeApp"
-        }
+        iosTarget.binaries.framework()
     }
-    
+
     sourceSets {
-        androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
-            implementation(libs.compose.ui)
-            implementation(libs.compose.material3)
-            implementation(libs.compose.ui.tooling.preview)
-            implementation(libs.koin.android)
-            implementation(libs.koin.android.compose)
-            implementation(libs.koin.android.navigation)
-        }
         commonMain.dependencies {
             implementation(projects.common.mvi)
             implementation(projects.common.mviKoin)
             implementation(projects.common.logger)
             implementation(projects.features.mainScreen.api)
-            implementation(projects.features.mainScreen.di)
+
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.koin.core)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -49,29 +39,28 @@ kotlin {
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
-
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.android.compose)
         }
     }
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr"
+    namespace = "ru.braveowlet.kmmpr.features.first_screen"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        applicationId = "ru.braveowlet.kmmpr"
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
     }
-    buildFeatures {
-        compose = true
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -82,12 +71,7 @@ android {
             isMinifyEnabled = false
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    dependencies{
+    dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
 }
-

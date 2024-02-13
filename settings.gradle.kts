@@ -23,4 +23,6 @@ include(":common:mvi")
 include(":common:mvi-koin")
 include(":common:logger")
 
-include(":features:main_screen")
+include(":features:main-screen:api")
+include(":features:main-screen:impl")
+include(":features:main-screen:di")
