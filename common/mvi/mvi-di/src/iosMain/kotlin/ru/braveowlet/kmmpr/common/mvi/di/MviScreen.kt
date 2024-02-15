@@ -9,7 +9,6 @@ import ru.braveowlet.kmmpr.common.mvi.general.MviState
 
 @Composable
 actual inline fun <reified Action : MviAction, reified Effect : MviEffect, reified Event : MviEvent, reified State : MviState, reified T : MviViewModel<Action, Effect, Event, State>>mviScreen(
-    diType : DiType?,
     noinline content: @Composable (State, Flow<Event>, (Action) -> Unit) -> Unit
 ){
     mviKoinScreen<Action,Effect,Event,State,T>(content)

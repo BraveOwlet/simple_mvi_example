@@ -18,7 +18,7 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
+include(":app")
 include(":common:mvi:mvi-general")
 include(":common:mvi:mvi-di")
 include(":common:logger")

@@ -1,6 +1,4 @@
-import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.kotlin.konan.target.KonanTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -74,7 +72,7 @@ dependencies{
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr"
+    namespace = "ru.braveowlet.kmmpr.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "ru.braveowlet.kmmpr"

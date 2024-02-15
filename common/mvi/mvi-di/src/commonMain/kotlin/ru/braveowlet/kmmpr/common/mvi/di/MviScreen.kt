@@ -9,6 +9,5 @@ import ru.braveowlet.kmmpr.common.mvi.general.MviState
 
 @Composable
 expect inline fun <reified Action : MviAction, reified Effect : MviEffect, reified Event : MviEvent, reified State : MviState, reified T : MviViewModel<Action, Effect, Event, State>>mviScreen(
-    diType : DiType? = null,
     noinline content: @Composable (State, Flow<Event>, (Action) -> Unit) -> Unit
 )
