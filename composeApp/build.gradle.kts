@@ -1,9 +1,17 @@
+import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
 import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.kotlin.konan.target.KonanTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.dagger.hilt)
+}
+
+hilt{
+    enableAggregatingTask = false
 }
 
 kotlin {
@@ -23,25 +31,18 @@ kotlin {
         iosTarget.binaries.framework {
             isStatic = true
             baseName = "ComposeApp"
+            binaryOptions["bundleId"] = "ru.braveowlet.kmmpr"
         }
     }
     
     sourceSets {
-        androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
-            implementation(libs.compose.ui)
-            implementation(libs.compose.material3)
-            implementation(libs.compose.ui.tooling.preview)
-            implementation(libs.koin.android)
-            implementation(libs.koin.android.compose)
-            implementation(libs.koin.android.navigation)
-        }
         commonMain.dependencies {
-            implementation(projects.common.mvi)
-            implementation(projects.common.mviKoin)
             implementation(projects.common.logger)
-            implementation(projects.features.mainScreen.api)
-            implementation(projects.features.mainScreen.di)
+            implementation(projects.common.mvi.mviGeneral)
+            implementation(projects.common.mvi.mviDi)
+            implementation(projects.features.mainScreen.mainScreenApi)
+            implementation(projects.features.mainScreen.mainScreenImpl)
+            implementation(projects.features.mainScreen.mainScreenDi)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -53,7 +54,23 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
         }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.koin.android)
+            implementation(libs.koin.android.compose)
+            implementation(libs.koin.android.navigation)
+            implementation(libs.dagger.hilt.android)
+            implementation(libs.dagger.hilt.navigation.compose)
+            implementation(libs.javapoet)
+        }
     }
+}
+
+dependencies{
+    add("kspAndroid", libs.dagger.hilt.compiler)
 }
 
 android {

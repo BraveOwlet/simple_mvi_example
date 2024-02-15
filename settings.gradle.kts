@@ -19,10 +19,11 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include(":common:mvi")
-include(":common:mvi-koin")
+include(":common:mvi:mvi-general")
+include(":common:mvi:mvi-di")
 include(":common:logger")
+include(":common:platform")
 
-include(":features:main-screen:api")
-include(":features:main-screen:impl")
-include(":features:main-screen:di")
+include(":features:main-screen:main-screen-api")
+include(":features:main-screen:main-screen-impl")
+include(":features:main-screen:main-screen-di")
