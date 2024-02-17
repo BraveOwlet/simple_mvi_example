@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsCompose)
 }
 
 kotlin {
@@ -16,17 +15,15 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    sourceSets{
+    sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.logger)
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(compose.runtime)
+
         }
     }
 }
 
 android {
-    namespace = "ru.braveowlet.common.mvi.general"
+    namespace = "ru.braveowlet.kmmpr.components.dogs.api"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

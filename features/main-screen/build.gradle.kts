@@ -1,3 +1,5 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -12,21 +14,43 @@ kotlin {
             }
         }
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
 
-    sourceSets{
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            isStatic = true
+            baseName = "ComposeApp"
+            binaryOptions["bundleId"] = "ru.braveowlet.kmmpr"
+        }
+    }
+
+    sourceSets {
         commonMain.dependencies {
             implementation(projects.common.logger)
+            implementation(projects.common.mvi.mviGeneral)
+            implementation(projects.common.mvi.mviCompose)
+
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.koin.core)
+
             implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            @OptIn(ExperimentalComposeLibrary::class)
+            implementation(compose.components.resources)
+
+            implementation(libs.voyager.koin)
+            implementation(libs.voyager.screenModel)
         }
     }
 }
 
 android {
-    namespace = "ru.braveowlet.common.mvi.general"
+    namespace = "ru.braveowlet.kmmpr.features.first_screen.impl"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -44,5 +68,8 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    dependencies {
+        debugImplementation(libs.compose.ui.tooling)
     }
 }

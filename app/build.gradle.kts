@@ -4,12 +4,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.dagger.hilt)
-}
-
-hilt{
-    enableAggregatingTask = false
 }
 
 kotlin {
@@ -37,20 +31,22 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.common.mvi.mviGeneral)
-            implementation(projects.common.mvi.mviDi)
-            implementation(projects.features.mainScreen.mainScreenApi)
-            implementation(projects.features.mainScreen.mainScreenImpl)
-            implementation(projects.features.mainScreen.mainScreenDi)
+            implementation(projects.common.mvi.mviCompose)
+            implementation(projects.features.mainScreen)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+
+            implementation(libs.voyager.koin)
+            implementation(libs.voyager.screenModel)
+            implementation(libs.voyager.navigator)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
@@ -60,15 +56,8 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.android.compose)
             implementation(libs.koin.android.navigation)
-            implementation(libs.dagger.hilt.android)
-            implementation(libs.dagger.hilt.navigation.compose)
-            implementation(libs.javapoet)
         }
     }
-}
-
-dependencies{
-    add("kspAndroid", libs.dagger.hilt.compiler)
 }
 
 android {
@@ -81,6 +70,7 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
     buildFeatures {
         compose = true
     }

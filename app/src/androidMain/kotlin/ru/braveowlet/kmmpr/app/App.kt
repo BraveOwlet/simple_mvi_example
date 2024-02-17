@@ -1,13 +1,15 @@
 package ru.braveowlet.kmmpr.app
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
-import ru.braveowlet.kmmpr.app.koin.initKoin
+import org.koin.core.context.startKoin
 
-@HiltAndroidApp
-class App : Application(){
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        initKoin()
+        startKoin {
+            modules(
+                appModules
+            )
+        }
     }
 }

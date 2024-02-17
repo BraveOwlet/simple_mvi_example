@@ -7,4 +7,4 @@ interface Logger {
 internal const val TAG_PREFIX = "MVI_"
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
-expect object LoggerDefault : Logger
+expect object DefaultLogger : Logger

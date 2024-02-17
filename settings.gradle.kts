@@ -19,11 +19,16 @@ dependencyResolutionManagement {
 }
 
 include(":app")
+
+include(":core:network")
+
 include(":common:mvi:mvi-general")
-include(":common:mvi:mvi-di")
+include(":common:mvi:mvi-compose")
 include(":common:logger")
 include(":common:platform")
 
-include(":features:main-screen:main-screen-api")
-include(":features:main-screen:main-screen-impl")
-include(":features:main-screen:main-screen-di")
+include(":features:main-screen:main-screen")
+
+include(":components:dogs:dogs-api")
+include(":components:dogs:dogs-impl")
+include(":components:dogs:dogs-di")
