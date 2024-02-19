@@ -1,4 +1,5 @@
 import dev.icerock.gradle.MRVisibility
+import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -15,34 +16,30 @@ kotlin {
             }
         }
     }
-
     iosX64()
     iosArm64()
     iosSimulatorArm64()
 
     multiplatformResources {
-        resourcesPackage = "ru.braveowlet.features.first_screen.impl"
+        resourcesPackage = "ru.braveowlet.kmmpr.core.recources"
         resourcesVisibility = MRVisibility.Public
     }
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.logger)
-            implementation(projects.common.mvi.mviGeneral)
-            implementation(projects.common.mvi.mviCompose)
-            implementation(projects.core.recources)
-
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.koin.core)
-
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
-
-            implementation(libs.voyager.koin)
-            implementation(libs.voyager.screenModel)
-
+            @OptIn(ExperimentalComposeLibrary::class)
+            implementation(compose.components.resources)
+            implementation(libs.moko.resources)
+            implementation(libs.moko.resources.compose)
+        }
+        androidMain.dependencies {
+            implementation(libs.compose.ui)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui.tooling.preview)
             implementation(libs.moko.resources)
             implementation(libs.moko.resources.compose)
         }
@@ -50,7 +47,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.features.first_screen.impl"
+    namespace = "ru.braveowlet.kmmpr.core.recources"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -59,6 +56,7 @@ android {
         sourceCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
         targetCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
     }
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -68,8 +66,5 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
     }
 }

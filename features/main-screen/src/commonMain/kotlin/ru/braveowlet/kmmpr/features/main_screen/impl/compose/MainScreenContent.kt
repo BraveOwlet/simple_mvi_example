@@ -14,11 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import ru.braveowlet.kmmpr.core.recources.MR
 import ru.braveowlet.kmmpr.features.main_screen.impl.mvi.MainScreenState
+import ru.braveowlet.kmmpr.recources.getImageResource
+import ru.braveowlet.kmmpr.recources.getStringResource
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun MainScreenContent(
     state: MainScreenState,
@@ -37,6 +37,7 @@ fun MainScreenContent(
             ) {
 
                 Text(state.data)
+                Text(getStringResource(MR.strings.app_name))
 
                 Button(
                     onClick = onClickButton
@@ -49,7 +50,7 @@ fun MainScreenContent(
                         Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Image(painterResource("compose-multiplatform.xml"), null)
+                        Image(getImageResource(MR.images.baseline), null)
                     }
                 }
             }

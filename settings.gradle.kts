@@ -21,6 +21,7 @@ dependencyResolutionManagement {
 include(":app")
 
 include(":core:network")
+include(":core:recources")
 
 include(":common:mvi:mvi-general")
 include(":common:mvi:mvi-compose")

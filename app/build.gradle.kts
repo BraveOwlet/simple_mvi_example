@@ -1,9 +1,11 @@
+import dev.icerock.gradle.MRVisibility
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.moko.resources.plugin)
 }
 
 kotlin {
@@ -14,39 +16,43 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            isStatic = true
-            baseName = "ComposeApp"
-            binaryOptions["bundleId"] = "ru.braveowlet.kmmpr"
+            baseName = "app"
+            binaryOptions["bundleId"] = "ru.braveowlet.kmmpr.app"
         }
     }
-    
+
+    multiplatformResources {
+        resourcesPackage = "ru.braveowlet.kmmpr.app"
+        resourcesVisibility = MRVisibility.Public
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.common.mvi.mviGeneral)
             implementation(projects.common.mvi.mviCompose)
+            implementation(projects.core.recources)
             implementation(projects.features.mainScreen)
-
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
-
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
-
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
             implementation(libs.voyager.navigator)
+            implementation(libs.moko.resources)
+            implementation(libs.moko.resources.compose)
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
@@ -56,6 +62,8 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.android.compose)
             implementation(libs.koin.android.navigation)
+            implementation(libs.moko.resources)
+            implementation(libs.moko.resources.compose)
         }
     }
 }
@@ -91,7 +99,7 @@ android {
         sourceCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
         targetCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
     }
-    dependencies{
+    dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
 }

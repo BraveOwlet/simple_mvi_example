@@ -24,7 +24,7 @@ lifecycle = "2.7.0"
 koin = "3.6.0-wasm-alpha2"
 ktor = "2.3.8"
 voyager = "1.1.0-alpha02"
-resources-generator = "0.23.0"
+moko-resources = "0.24.0-alpha-4"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -73,6 +73,9 @@ voyager-tabNavigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", v
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
 
+moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
@@ -81,4 +84,5 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
-resources-generator = {id = "dev.icerock.mobile.multiplatform-resources", version.ref = "resources-generator"}
+moko-resources-plugin = {id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources"}
+moko-resources-path = { id = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
