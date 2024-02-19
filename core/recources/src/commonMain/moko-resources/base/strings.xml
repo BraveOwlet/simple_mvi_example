@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KMM_PR</string>
+    <string name="back">Back</string>
+
+    <!--> MAIN_SCREEN <-->
+    <string name="main_screen_button_go_to_dogs_screen">Dogs</string>
+    <string name="main_screen_button_go_to_saved_dogs_screen">Saved dogs</string>
 </resources>

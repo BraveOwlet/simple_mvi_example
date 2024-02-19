@@ -17,6 +17,9 @@ import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import ru.braveowlet.kmmpr.common.logger.Logger
+import kotlin.math.pow
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 open class MviController
 <Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState>(
@@ -29,6 +32,8 @@ open class MviController
     val logEnable: Boolean,
     val logger: Logger,
 ) : Mvi<Action, Event, State> {
+
+    private val instanceId: String = getRandomInstanceId(4)
 
     private var stateFlow: StateFlow<State>? = null
 
@@ -49,11 +54,12 @@ open class MviController
 
     override fun log(message: String) {
         if (logEnable) {
-            logger.log(tag, message)
+            logger.log("$tag [$instanceId]", message)
         }
     }
 
-    override fun logDebug(message: String) = logger.log(tag, message)
+    override fun logDebug(message: String) =
+        logger.log("$tag [$instanceId]", message)
 
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -99,8 +105,20 @@ open class MviController
     override suspend fun acceptAction(action: Action) = actionsFlow.emit(action)
 
     override fun eventFlow(): SharedFlow<Event> = eventFlow
+
+    private fun getRandomInstanceId(length: Int = DEFAULT_INSTANCE_ID_LENGTH): String {
+        val checkedLength = length.takeIf { it > 0 } ?: DEFAULT_INSTANCE_ID_LENGTH
+        val maxRange = 10f.pow(checkedLength).toInt()
+        var random = Random.nextInt(1..<maxRange).toString()
+        val count = checkedLength - random.length
+        repeat(count) {
+            random = "0$random"
+        }
+        return random
+    }
 }
 
+private const val DEFAULT_INSTANCE_ID_LENGTH = 4
 private const val ACTIONS_REPLAY_COUNT = 0
 private const val ACTIONS_BUFFER_SIZE = 10
 private const val EVENTS_REPLAY_COUNT = 0

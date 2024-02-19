@@ -36,7 +36,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.common.logger"
+    namespace = "ru.braveowlet.common.network"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
