@@ -18,6 +18,7 @@ junit = "4.13.2"
 kotlin = "1.9.22"
 org-jetbrains-kotlin-jvm = "1.9.22"
 kotlinx-coroutines = "1.7.3"
+kotlinx-serialization = "1.6.3"
 java-version-int = "17"
 java-version-string = "VERSION_17"
 lifecycle = "2.7.0"
@@ -25,12 +26,14 @@ koin = "3.6.0-wasm-alpha2"
 ktor = "2.3.8"
 voyager = "1.1.0-alpha02"
 moko-resources = "0.24.0-alpha-4"
+coil = "3.0.0-alpha04"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
@@ -75,6 +78,9 @@ voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voy
 
 moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
 moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
+
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

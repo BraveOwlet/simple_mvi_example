@@ -6,5 +6,15 @@ internal class DogsScreenMviStateReducer : MviStateReducer<DogsScreenEffect, Dog
     override suspend fun invoke(
         effect: DogsScreenEffect,
         previousState: DogsScreenState
-    ): DogsScreenState = previousState
+    ): DogsScreenState = when (effect) {
+        is DogsScreenEffect.ImageRandomDogLoaded -> previousState.copy(
+            urlImageDog = effect.url
+        )
+
+        is DogsScreenEffect.ImageRandomDogLoadFiled -> previousState.copy(
+            urlImageDog = ""
+        )
+
+        is DogsScreenEffect.ButtonBackClicked -> previousState
+    }
 }

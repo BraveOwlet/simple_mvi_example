@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -18,24 +19,17 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.common.logger)
-            implementation(projects.components.dogs.dogsApi)
+            implementation(projects.core.network)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
-        }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-        }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
-            implementation(libs.kotlinx.coroutines.android)
-            implementation(libs.ktor.client.okhttp)
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.components.dogs.impl"
+    namespace = "ru.braveowlet.kmmpr.components.dogs"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

@@ -31,6 +31,8 @@ kotlin {
             implementation(projects.common.mvi.mviGeneral)
             implementation(projects.common.mvi.mviKoin)
             implementation(projects.core.recources)
+            implementation(projects.core.network)
+            implementation(projects.components.dogs)
             implementation(projects.features.dogsScreen.dogsScreenApi)
 
             implementation(libs.kotlinx.coroutines.core)
@@ -48,6 +50,9 @@ kotlin {
 
             implementation(libs.moko.resources)
             implementation(libs.moko.resources.compose)
+
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network)
         }
     }
 }

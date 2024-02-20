@@ -39,6 +39,8 @@ kotlin {
             implementation(projects.common.mvi.mviGeneral)
             implementation(projects.common.mvi.mviKoin)
             implementation(projects.core.recources)
+            implementation(projects.core.network)
+            implementation(projects.components.dogs)
             implementation(projects.features.mainScreen.mainScreenApi)
             implementation(projects.features.mainScreen.mainScreenImpl)
             implementation(projects.features.dogsScreen.dogsScreenImpl)

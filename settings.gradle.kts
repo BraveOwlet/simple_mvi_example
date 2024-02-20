@@ -40,5 +40,4 @@ include(":features:saved-dogs-screen:saved-dogs-screen-api")
 include(":features:saved-dogs-screen:saved-dogs-screen-impl")
 
 // COMPONENTS
-include(":components:dogs:dogs-api")
-include(":components:dogs:dogs-impl")
+include(":components:dogs:dogs")

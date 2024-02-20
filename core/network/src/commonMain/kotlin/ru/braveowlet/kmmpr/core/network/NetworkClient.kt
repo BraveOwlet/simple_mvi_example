@@ -13,10 +13,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import ru.braveowlet.kmmpr.common.logger.DefaultLogger
 
-fun createKtorClient(): HttpClient = HttpClient{
-    defaultRequest {
-        url.takeFrom(URLBuilder().takeFrom("https://"))
-    }
+internal fun createKtorClient(): HttpClient = HttpClient{
     install(HttpTimeout){
         requestTimeoutMillis = 15_000
     }

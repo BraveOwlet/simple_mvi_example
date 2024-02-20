@@ -11,7 +11,13 @@ internal class DogsScreenMviEventProducer :
         state: DogsScreenState
     ): Flow<DogsScreenEvent> = flow {
         when (effect) {
-            is DogsScreenEffect.ButtonBackClicked -> emit(DogsScreenEvent.NavigateToBack)
+            is DogsScreenEffect.ButtonBackClicked ->
+                emit(DogsScreenEvent.NavigateToBack)
+
+            is DogsScreenEffect.ImageRandomDogLoadFiled ->
+                emit(DogsScreenEvent.ShowError(effect.throwable.message))
+
+            is DogsScreenEffect.ImageRandomDogLoaded -> {}
         }
     }
 }
