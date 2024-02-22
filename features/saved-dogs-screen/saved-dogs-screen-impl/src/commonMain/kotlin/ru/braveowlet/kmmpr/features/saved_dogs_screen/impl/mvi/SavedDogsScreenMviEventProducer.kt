@@ -2,7 +2,7 @@ package ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.braveowlet.kmmpr.common.mvi.general.MviEventProducer
+import ru.braveowlet.common.mvi.general.MviEventProducer
 
 internal class SavedDogsScreenMviEventProducer :
     MviEventProducer<SavedDogsScreenEffect, SavedDogsScreenEvent, SavedDogsScreenState> {

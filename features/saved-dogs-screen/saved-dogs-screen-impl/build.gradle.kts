@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.moko.resources.plugin)
+    alias(libs.plugins.mokoResourcesPlugin)
 }
 
 kotlin {

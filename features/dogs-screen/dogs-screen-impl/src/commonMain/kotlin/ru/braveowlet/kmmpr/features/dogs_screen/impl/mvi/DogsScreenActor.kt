@@ -2,7 +2,7 @@ package ru.braveowlet.kmmpr.features.dogs_screen.impl.mvi
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import ru.braveowlet.kmmpr.common.mvi.general.MviActor
+import ru.braveowlet.common.mvi.general.MviActor
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomImageWithDogsUseCase
 import ru.braveowlet.kmmpr.core.network.NetworkResult
 

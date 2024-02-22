@@ -1,6 +1,6 @@
 package ru.braveowlet.kmmpr.features.main_screen.impl.mvi
 
-import ru.braveowlet.kmmpr.common.mvi.koin.MviScreenModel
+import ru.braveowlet.common.mvi.koin.MviScreenModel
 
 internal class MainScreenModel :
     MviScreenModel<MainScreenAction, MainScreenEffect, MainScreenEvent, MainScreenState>(

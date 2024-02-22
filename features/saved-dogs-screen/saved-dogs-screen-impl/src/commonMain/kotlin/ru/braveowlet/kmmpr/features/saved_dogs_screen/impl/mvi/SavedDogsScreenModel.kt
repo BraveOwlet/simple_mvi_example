@@ -1,6 +1,6 @@
 package ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi
 
-import ru.braveowlet.kmmpr.common.mvi.koin.MviScreenModel
+import ru.braveowlet.common.mvi.koin.MviScreenModel
 
 internal class SavedDogsScreenModel :
     MviScreenModel<SavedDogsScreenAction, SavedDogsScreenEffect, SavedDogsScreenEvent, SavedDogsScreenState>(

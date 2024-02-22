@@ -5,7 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.flow.Flow
-import ru.braveowlet.kmmpr.common.mvi.koin.MviScreen
+import ru.braveowlet.common.mvi.koin.MviScreen
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.compose.SavedDogsScreenContent
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenAction
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenEffect
