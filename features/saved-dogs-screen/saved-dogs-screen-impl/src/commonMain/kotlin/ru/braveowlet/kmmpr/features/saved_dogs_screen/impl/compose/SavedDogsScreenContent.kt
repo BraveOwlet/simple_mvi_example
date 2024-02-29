@@ -5,9 +5,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import ru.braveowlet.kmmpr.core.recources.MR
-import ru.braveowlet.kmmpr.recources.getStringResource
+import kmmpr.core.recources.generated.resources.Res
+import kmmpr.core.recources.generated.resources.back
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun SavedDogsScreenContent(
     onClickBack: () -> Unit
@@ -17,7 +20,7 @@ internal fun SavedDogsScreenContent(
             Button(
                 onClick = onClickBack
             ) {
-                Text(getStringResource(MR.strings.back))
+                Text(stringResource(Res.string.back))
             }
             Text("SavedDogsScreenContent")
         }

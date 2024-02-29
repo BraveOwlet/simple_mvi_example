@@ -18,27 +18,26 @@ androidx-test-junit = "1.1.5"
 androidx-lifecycle = "2.7.0"
 
 # Compose
-compose-compiler = "1.5.9"
-compose = "1.6.1"
-compose-plugin = "1.5.12"
+compose-compiler = "1.5.11-dev-k2.0.0-Beta4-21f5e479a96"
+compose = "1.6.2"
+compose-saveable = "1.6.0"
+compose-plugin = "1.6.0"
 compose-material3 = "1.2.0"
 
 # Kotlin
-kotlin = "1.9.22"
-kotlinx-coroutines = "1.7.3"
+kotlin = "2.0.0-Beta4"
+kotlinx-coroutines = "1.8.0"
 kotlinx-serialization = "1.6.3"
 
 # Koin
-koin = "3.6.0-wasm-alpha2"
+koin = "3.5.3"
+koin-compose = "1.1.2"
 
 # Koin
 ktor = "2.3.8"
 
 # Voyager
-voyager = "1.1.0-alpha02"
-
-# Moko
-moko-resources = "0.24.0-alpha-4"
+voyager = "1.1.0-alpha03"
 
 # Coil
 coil = "3.0.0-alpha04"
@@ -48,6 +47,9 @@ sqldelight = "2.0.1"
 
 # Test
 junit = "4.13.2"
+
+# Stately
+stately = "2.0.6"
 
 [libraries]
 # Kotlin
@@ -77,14 +79,15 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+compose-runtime-saveable = {module = "org.jetbrains.compose.runtime:runtime-saveable", version.ref = "compose-saveable"}
 
 # Koin
-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
-koin-core-coroutines = { group = "io.insert-koin", name = "koin-core-coroutines", version.ref = "koin" }
-koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
-koin-android-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin" }
-koin-android-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-core-coroutines = { module = "io.insert-koin:koin-core-coroutines", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin-compose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin" }
+koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 
 # Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -102,10 +105,6 @@ voyager-tabNavigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", v
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
 
-# Moko
-moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
-moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" }
-
 # Coil
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
@@ -114,6 +113,8 @@ coil-network = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "c
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
 sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+
+touchlab-stately-common = {module = "co.touchlab:stately-common", version.ref = "stately"}
 
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -131,10 +132,6 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
 # Compose
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
-
-# Moko
-mokoResourcesPlugin = {id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources"}
-mokoResourcesClasspath = { id = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
 
 # Sqldelight
 sqldelightPlugin = {id = "app.cash.sqldelight", version.ref = "sqldelight"}

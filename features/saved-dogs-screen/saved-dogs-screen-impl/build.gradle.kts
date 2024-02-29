@@ -1,10 +1,7 @@
-import dev.icerock.gradle.MRVisibility
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.mokoResourcesPlugin)
 }
 
 kotlin {
@@ -19,11 +16,6 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-
-    multiplatformResources {
-        resourcesPackage = "ru.braveowlet.features.saved_dogs_screen.impl"
-        resourcesVisibility = MRVisibility.Public
-    }
 
     sourceSets {
         commonMain.dependencies {
@@ -42,12 +34,10 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.components.resources)
 
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
-
-            implementation(libs.moko.resources)
-            implementation(libs.moko.resources.compose)
         }
     }
 }

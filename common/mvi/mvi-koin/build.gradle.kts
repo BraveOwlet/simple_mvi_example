@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -27,17 +25,15 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
 
             implementation(compose.runtime)
-            implementation(compose.material3)
-            implementation(compose.ui)
 
             implementation(libs.koin.core)
-            implementation(libs.koin.compose)
 
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
         }
         iosMain.dependencies{
-            implementation("co.touchlab:stately-common:2.0.6")
+            implementation(libs.touchlab.stately.common)
+            implementation(libs.compose.runtime.saveable)
         }
     }
 }

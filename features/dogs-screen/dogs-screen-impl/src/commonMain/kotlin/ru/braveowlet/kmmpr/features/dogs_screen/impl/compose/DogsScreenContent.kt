@@ -10,9 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import coil3.compose.AsyncImage
-import ru.braveowlet.kmmpr.core.recources.MR
-import ru.braveowlet.kmmpr.recources.getStringResource
+import kmmpr.core.recources.generated.resources.Res
+import kmmpr.core.recources.generated.resources.back
+import kmmpr.core.recources.generated.resources.dogs_screen_button_get_new_random_dog
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun DogsScreenContent(
     urlImageDog: String,
@@ -27,12 +31,12 @@ internal fun DogsScreenContent(
             Button(
                 onClick = onClickButtonBack
             ) {
-                Text(getStringResource(MR.strings.back))
+                Text(stringResource(Res.string.back))
             }
             Button(
                 onClick = onClickButtonGetImageRandomDog
             ) {
-                Text(getStringResource(MR.strings.dogs_screen_button_get_new_random_dog))
+                Text(stringResource(Res.string.dogs_screen_button_get_new_random_dog))
             }
             Text(urlImageDog)
             AsyncImage(
