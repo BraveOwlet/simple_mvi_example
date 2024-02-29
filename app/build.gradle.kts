@@ -2,6 +2,13 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.sqldelightPlugin)
+}
+
+sqldelight{
+    databases{
+        linkSqlite = true
+    }
 }
 
 kotlin {
@@ -31,6 +38,7 @@ kotlin {
             implementation(projects.common.mvi.mviKoin)
             implementation(projects.core.network)
             implementation(projects.core.recources)
+            implementation(projects.core.database)
             implementation(projects.components.dogs)
             implementation(projects.features.mainScreen.mainScreenApi)
             implementation(projects.features.mainScreen.mainScreenImpl)

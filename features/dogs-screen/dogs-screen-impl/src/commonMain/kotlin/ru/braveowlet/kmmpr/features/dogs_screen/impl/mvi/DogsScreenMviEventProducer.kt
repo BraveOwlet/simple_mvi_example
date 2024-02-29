@@ -14,10 +14,10 @@ internal class DogsScreenMviEventProducer :
             is DogsScreenEffect.ButtonBackClicked ->
                 emit(DogsScreenEvent.NavigateToBack)
 
-            is DogsScreenEffect.ImageRandomDogLoadFiled ->
+            is DogsScreenEffect.DogLoadFiled ->
                 emit(DogsScreenEvent.ShowError(effect.throwable.message))
 
-            is DogsScreenEffect.ImageRandomDogLoaded -> {}
+            is DogsScreenEffect.DogLoaded -> {}
         }
     }
 }

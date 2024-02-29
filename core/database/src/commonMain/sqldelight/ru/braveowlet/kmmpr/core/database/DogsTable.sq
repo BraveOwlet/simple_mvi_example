@@ -1,0 +1,15 @@
+CREATE TABLE Dogs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT NOT NULL
+);
+
+insert:
+INSERT INTO Dogs(url)
+VALUES(?);
+
+removeAll:
+DELETE FROM Dogs;
+
+selectAll:
+SELECT Dogs.*
+FROM Dogs;

@@ -1,12 +1,18 @@
 package ru.braveowlet.kmmpr.components.dogs.di
 
 import org.koin.dsl.module
+import ru.braveowlet.kmmpr.components.dogs.data.api.DogsApi
+import ru.braveowlet.kmmpr.components.dogs.data.api.DogsApiImpl
 import ru.braveowlet.kmmpr.components.dogs.data.repository.DogsRepositoryImpl
 import ru.braveowlet.kmmpr.components.dogs.domain.repository.DogsRepository
-import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomImageWithDogsUseCase
-import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomImageWithDogsUseCaseImpl
+import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomDogUseCase
+import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomDogUseCaseImpl
+import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCase
+import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCaseImpl
 
 val dogsModule = module {
-    single<DogsRepository> { DogsRepositoryImpl(get()) }
-    single<GetRandomImageWithDogsUseCase> { GetRandomImageWithDogsUseCaseImpl(get()) }
+    single<DogsApi> { DogsApiImpl(get()) }
+    single<DogsRepository> { DogsRepositoryImpl(get(), get()) }
+    single<GetRandomDogUseCase> { GetRandomDogUseCaseImpl(get()) }
+    single<SaveDogUseCase> { SaveDogUseCaseImpl(get()) }
 }

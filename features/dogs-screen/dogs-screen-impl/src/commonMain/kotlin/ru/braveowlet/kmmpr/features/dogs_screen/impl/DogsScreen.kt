@@ -42,13 +42,16 @@ internal class DogsScreen :
         }
 
         DogsScreenContent(
-            urlImageDog = state.urlImageDog,
+            dog = state.dog,
             snackbarHostState = snackbarHostState,
             onClickButtonBack = {
                 acceptAction(DogsScreenAction.ClickButtonBack)
             },
-            onClickButtonGetImageRandomDog = {
-                acceptAction(DogsScreenAction.ClickButtonGetImageRandomDog)
+            onClickButtonGetDog = {
+                acceptAction(DogsScreenAction.ClickButtonGetDog)
+            },
+            onClickButtonSaveDog = {
+                acceptAction(DogsScreenAction.ClickButtonSaveDog(it))
             }
         )
     }

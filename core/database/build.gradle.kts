@@ -2,6 +2,17 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.sqldelightPlugin)
+}
+
+sqldelight{
+    databases{
+        create("Database"){
+            packageName = "ru.braveowlet.kmmpr.core.database"
+            generateAsync = true
+        }
+        linkSqlite = true
+    }
 }
 
 kotlin {
@@ -16,23 +27,24 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    sourceSets {
+    sourceSets{
         commonMain.dependencies {
             implementation(projects.common.logger)
-            implementation(projects.core.network)
-            implementation(projects.core.database)
-            implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
-            implementation(libs.ktor.client.core)
-            implementation(libs.kotlinx.serialization.json)
             implementation(libs.sqldelight.runtime)
-            implementation(libs.sqldelight.coroutines)
+        }
+        androidMain.dependencies {
+            implementation(libs.koin.android)
+            implementation(libs.sqldelight.android.driver)
+        }
+        iosMain.dependencies {
+            implementation(libs.sqldelight.native.driver)
         }
     }
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.components.dogs"
+    namespace = "ru.braveowlet.kmmpr.core.database"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -41,6 +53,7 @@ android {
         sourceCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
         targetCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -52,3 +65,5 @@ android {
         }
     }
 }
+
+task("testClasses")

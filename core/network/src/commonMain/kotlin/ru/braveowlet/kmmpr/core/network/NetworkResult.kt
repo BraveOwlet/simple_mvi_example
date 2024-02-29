@@ -40,8 +40,25 @@ sealed interface NetworkResult<out R> {
 inline fun <reified R> NetworkResult<R>.takeIfSuccess(): R? =
     if (this is NetworkResult.Success) value else null
 
+inline fun <reified R> NetworkResult<R>.handle(
+    onSuccess: (R) -> Unit,
+    onError: (Throwable) -> Unit
+): Unit = when (this) {
+    is NetworkResult.Error -> onError(this.throwable)
+    is NetworkResult.Success -> onSuccess(this.value)
+}
+
+inline fun <reified R, reified T> NetworkResult<R>.handleMap(
+    onSuccess: (R) -> T,
+    onError: (Throwable) -> T
+): T = when (this) {
+    is NetworkResult.Error -> onError(this.throwable)
+    is NetworkResult.Success -> onSuccess(this.value)
+}
+
 inline fun <reified R, reified T> NetworkResult<R>.map(mapper: (R) -> T): NetworkResult<T> =
     when (this) {
         is NetworkResult.Error -> NetworkResult.Error(this.throwable)
         is NetworkResult.Success -> NetworkResult.Success(mapper(this.value))
     }
+

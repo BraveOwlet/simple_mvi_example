@@ -12,17 +12,20 @@ import androidx.compose.ui.Modifier
 import coil3.compose.AsyncImage
 import kmmpr.core.recources.generated.resources.Res
 import kmmpr.core.recources.generated.resources.back
-import kmmpr.core.recources.generated.resources.dogs_screen_button_get_new_random_dog
+import kmmpr.core.recources.generated.resources.dogs_screen_button_get_dog
+import kmmpr.core.recources.generated.resources.dogs_screen_button_save_dog
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import ru.braveowlet.kmmpr.components.dogs.domain.model.Dog
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun DogsScreenContent(
-    urlImageDog: String,
+    dog: Dog?,
     snackbarHostState: SnackbarHostState,
     onClickButtonBack: () -> Unit,
-    onClickButtonGetImageRandomDog: () -> Unit,
+    onClickButtonGetDog: () -> Unit,
+    onClickButtonSaveDog: (Dog) -> Unit,
 ) {
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
@@ -34,16 +37,25 @@ internal fun DogsScreenContent(
                 Text(stringResource(Res.string.back))
             }
             Button(
-                onClick = onClickButtonGetImageRandomDog
+                onClick = onClickButtonGetDog
             ) {
-                Text(stringResource(Res.string.dogs_screen_button_get_new_random_dog))
+                Text(stringResource(Res.string.dogs_screen_button_get_dog))
             }
-            Text(urlImageDog)
-            AsyncImage(
-                modifier = Modifier.fillMaxWidth(),
-                model = urlImageDog,
-                contentDescription = null,
-            )
+            if (dog!=null) {
+                Text(dog.url)
+                AsyncImage(
+                    modifier = Modifier.fillMaxWidth(),
+                    model = dog.url,
+                    contentDescription = null,
+                )
+                Button(
+                    onClick = {
+                        onClickButtonSaveDog(dog)
+                    }
+                ) {
+                    Text(stringResource(Res.string.dogs_screen_button_save_dog))
+                }
+            }
         }
     }
 }

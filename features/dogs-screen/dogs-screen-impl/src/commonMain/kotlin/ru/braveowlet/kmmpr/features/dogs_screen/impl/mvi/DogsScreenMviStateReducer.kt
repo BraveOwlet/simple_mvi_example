@@ -7,12 +7,12 @@ internal class DogsScreenMviStateReducer : MviStateReducer<DogsScreenEffect, Dog
         effect: DogsScreenEffect,
         previousState: DogsScreenState
     ): DogsScreenState = when (effect) {
-        is DogsScreenEffect.ImageRandomDogLoaded -> previousState.copy(
-            urlImageDog = effect.url
+        is DogsScreenEffect.DogLoaded -> previousState.copy(
+            dog = effect.dog
         )
 
-        is DogsScreenEffect.ImageRandomDogLoadFiled -> previousState.copy(
-            urlImageDog = ""
+        is DogsScreenEffect.DogLoadFiled -> previousState.copy(
+            dog = null
         )
 
         is DogsScreenEffect.ButtonBackClicked -> previousState

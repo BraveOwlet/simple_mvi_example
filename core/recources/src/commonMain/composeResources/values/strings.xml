@@ -8,5 +8,8 @@
     <string name="main_screen_button_go_to_saved_dogs_screen">Saved dogs</string>
 
     <!--> DOGS_SCREEN <-->
-    <string name="dogs_screen_button_get_new_random_dog">Get new random dog</string>
+    <string name="dogs_screen_button_get_dog">Get dog</string>
+    <string name="dogs_screen_button_save_dog">Save dog</string>
+
+    <!--> SAVED_DOGS_SCREEN <-->
 </resources>

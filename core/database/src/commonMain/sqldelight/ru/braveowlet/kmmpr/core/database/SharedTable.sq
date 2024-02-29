@@ -1,0 +1,15 @@
+CREATE TABLE Shared (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    info TEXT
+);
+
+insert:
+INSERT INTO Shared(info)
+VALUES(?);
+
+removeAll:
+DELETE FROM Shared;
+
+selectAll:
+SELECT Shared.*
+FROM Shared;

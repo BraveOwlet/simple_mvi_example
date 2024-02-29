@@ -26,6 +26,7 @@ include(":app")
 
 // CORE
 include(":core:network")
+include(":core:database")
 include(":core:recources")
 
 // COMMON

@@ -1,9 +1,8 @@
 package ru.braveowlet.kmmpr.components.dogs.data.api
 
-import io.ktor.client.HttpClient
-import ru.braveowlet.kmmpr.components.dogs.data.dto.ImageWithDogDto
-import ru.braveowlet.kmmpr.core.network.fetchForGet
+import ru.braveowlet.kmmpr.components.dogs.data.dto.DogDto
+import ru.braveowlet.kmmpr.core.network.NetworkResult
 
-internal suspend fun HttpClient.getRandomImageWithDog() = fetchForGet<ImageWithDogDto>(
-    url = "https://dog.ceo/api/breeds/image/random"
-)
+internal interface DogsApi {
+    suspend fun getRandomDog(): NetworkResult<DogDto>
+}
