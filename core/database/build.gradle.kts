@@ -32,6 +32,7 @@ kotlin {
             implementation(projects.common.logger)
             implementation(libs.koin.core)
             implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines)
         }
         androidMain.dependencies {
             implementation(libs.koin.android)

@@ -7,6 +7,8 @@ import ru.braveowlet.kmmpr.components.dogs.data.repository.DogsRepositoryImpl
 import ru.braveowlet.kmmpr.components.dogs.domain.repository.DogsRepository
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomDogUseCase
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomDogUseCaseImpl
+import ru.braveowlet.kmmpr.components.dogs.domain.usecase.ObserveRandomDogUseCase
+import ru.braveowlet.kmmpr.components.dogs.domain.usecase.ObserveRandomDogUseCaseImpl
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCase
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCaseImpl
 
@@ -15,4 +17,5 @@ val dogsModule = module {
     single<DogsRepository> { DogsRepositoryImpl(get(), get()) }
     single<GetRandomDogUseCase> { GetRandomDogUseCaseImpl(get()) }
     single<SaveDogUseCase> { SaveDogUseCaseImpl(get()) }
+    single<ObserveRandomDogUseCase> { ObserveRandomDogUseCaseImpl(get()) }
 }

@@ -10,7 +10,7 @@ internal class SavedDogsScreenActor :
         action: SavedDogsScreenAction,
         state: SavedDogsScreenState
     ): Flow<SavedDogsScreenEffect> = flowOf<SavedDogsScreenEffect>(
-        when(action){
+        when (action) {
             is SavedDogsScreenAction.ClickButtonBack -> SavedDogsScreenEffect.ButtonBackClicked
         }
     )

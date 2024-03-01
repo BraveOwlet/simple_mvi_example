@@ -9,5 +9,5 @@ internal interface DogsRepository {
     suspend fun getRandomDog(): NetworkResult<Dog>
     suspend fun saveDog(dog: Dog)
     suspend fun loadDogs() : List<Dog>
-    fun observeDogs( context: CoroutineContext) : Flow<List<Dog>>
+    fun observeDogs() : Flow<List<Dog>>
 }

@@ -13,7 +13,6 @@ import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenEv
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenModel
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenState
 
-
 internal class SavedDogsScreen :
     MviScreen<SavedDogsScreenAction, SavedDogsScreenEffect, SavedDogsScreenEvent, SavedDogsScreenState>(
         tag = SavedDogsScreenModel.tag
@@ -35,6 +34,7 @@ internal class SavedDogsScreen :
         }
 
         SavedDogsScreenContent(
+            dogs = state.dogs,
             onClickBack = {
                 acceptAction(SavedDogsScreenAction.ClickButtonBack)
             }

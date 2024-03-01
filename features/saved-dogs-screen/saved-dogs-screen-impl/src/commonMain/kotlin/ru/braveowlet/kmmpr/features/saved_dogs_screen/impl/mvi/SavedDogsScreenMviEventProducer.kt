@@ -12,6 +12,7 @@ internal class SavedDogsScreenMviEventProducer :
     ): Flow<SavedDogsScreenEvent> = flow {
         when (effect) {
             is SavedDogsScreenEffect.ButtonBackClicked -> emit(SavedDogsScreenEvent.NavigateToBack)
+            is SavedDogsScreenEffect.DogsUpdated -> {}
         }
     }
 }

@@ -23,6 +23,7 @@ kotlin {
             implementation(projects.common.mvi.mviGeneral)
             implementation(projects.common.mvi.mviKoin)
             implementation(projects.core.recources)
+            implementation(projects.components.dogs)
             implementation(projects.features.savedDogsScreen.savedDogsScreenApi)
 
             implementation(libs.kotlinx.coroutines.core)
@@ -38,6 +39,9 @@ kotlin {
 
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
+
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network)
         }
     }
 }

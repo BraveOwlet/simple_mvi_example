@@ -7,5 +7,11 @@ internal class SavedDogsScreenMviStateReducer :
     override suspend fun invoke(
         effect: SavedDogsScreenEffect,
         previousState: SavedDogsScreenState
-    ): SavedDogsScreenState = previousState
+    ): SavedDogsScreenState = when (effect) {
+        is SavedDogsScreenEffect.DogsUpdated -> previousState.copy(
+            dogs = effect.dogs
+        )
+
+        is SavedDogsScreenEffect.ButtonBackClicked -> previousState
+    }
 }
