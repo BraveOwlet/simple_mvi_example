@@ -14,6 +14,7 @@ import ru.braveowlet.kmmpr.features.main_screen.impl.mvi.MainScreenEffect
 import ru.braveowlet.kmmpr.features.main_screen.impl.mvi.MainScreenEvent
 import ru.braveowlet.kmmpr.features.main_screen.impl.mvi.MainScreenModel
 import ru.braveowlet.kmmpr.features.main_screen.impl.mvi.MainScreenState
+import ru.braveowlet.kmmpr.features.resources_screen.api.ResourcesScreenApi
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.api.SavedDogsScreenApi
 
 internal class MainScreen :
@@ -29,16 +30,19 @@ internal class MainScreen :
         val navigator = LocalNavigator.currentOrThrow
         val dogsScreenApi = koinInject<DogsScreenApi>()
         val savedDogsScreenApi = koinInject<SavedDogsScreenApi>()
+        val resourcesScreenApi = koinInject<ResourcesScreenApi>()
+
         LaunchedEffect(Unit) {
             eventFlow.collect { event ->
                 when (event) {
-                    is MainScreenEvent.NavigateToDogsScreen -> {
+                    is MainScreenEvent.NavigateToDogsScreen ->
                         navigator.push(dogsScreenApi.dogsScreen())
-                    }
 
-                    is MainScreenEvent.NavigateToSavedDogsScreen -> {
+                    is MainScreenEvent.NavigateToSavedDogsScreen ->
                         navigator.push(savedDogsScreenApi.savedDogsScreen())
-                    }
+
+                    is MainScreenEvent.NavigateToResourcesScreen ->
+                        navigator.push(resourcesScreenApi.resourcesScreen())
                 }
             }
         }
@@ -46,7 +50,8 @@ internal class MainScreen :
         MainScreenContent(
             state = state,
             onClickButtonDogsScreen = { acceptAction(MainScreenAction.ClickButtonDogsScreen) },
-            onClickButtonSavedDogsScreen = { acceptAction(MainScreenAction.ClickButtonSavedDogsScreen) }
+            onClickButtonSavedDogsScreen = { acceptAction(MainScreenAction.ClickButtonSavedDogsScreen) },
+            onClickButtonResourcesScreen = { acceptAction(MainScreenAction.ClickButtonResourcesScreen) },
         )
     }
 }

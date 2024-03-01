@@ -42,6 +42,8 @@ include(":features:dogs-screen:dogs-screen-api")
 include(":features:dogs-screen:dogs-screen-impl")
 include(":features:saved-dogs-screen:saved-dogs-screen-api")
 include(":features:saved-dogs-screen:saved-dogs-screen-impl")
+include(":features:resources-screen:resources-screen-api")
+include(":features:resources-screen:resources-screen-impl")
 
 // COMPONENTS
 include(":components:dogs:dogs")

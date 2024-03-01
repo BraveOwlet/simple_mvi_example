@@ -7,7 +7,7 @@ import ru.braveowlet.kmmpr.features.saved_dogs_screen.api.SavedDogsScreenApi
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenBoot
 import ru.braveowlet.kmmpr.features.saved_dogs_screen.impl.mvi.SavedDogsScreenModel
 
-val savedDogsScreenModule = module {
+val savedDogsScreenModule get() = module {
     single<SavedDogsScreenBoot> { SavedDogsScreenBoot(get()) }
     factory<MviScreenModel<*, *, *, *>>(qualifier(SavedDogsScreenModel.tag)) {
         SavedDogsScreenModel(get())

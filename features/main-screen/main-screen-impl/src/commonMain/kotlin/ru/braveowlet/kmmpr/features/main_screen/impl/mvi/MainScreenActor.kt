@@ -12,6 +12,7 @@ internal class MainScreenActor : MviActor<MainScreenAction, MainScreenEffect, Ma
         when (action) {
             is MainScreenAction.ClickButtonDogsScreen -> MainScreenEffect.ButtonDogsScreenClicked
             is MainScreenAction.ClickButtonSavedDogsScreen -> MainScreenEffect.ButtonSavedDogsScreenClicked
+            is MainScreenAction.ClickButtonResourcesScreen -> MainScreenEffect.ButtonResourcesScreenClicked
         }
     )
 }

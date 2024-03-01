@@ -117,8 +117,6 @@ open class MviController
                 if (currentState != newState) {
                     log("$LOG_OLD_STATE -> $currentState")
                     log("$LOG_NEW_STATE -> $newState")
-                } else {
-                    log("$LOG_OLD_STATE == $LOG_NEW_STATE (skip update)")
                 }
             }
         }

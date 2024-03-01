@@ -5,8 +5,8 @@ plugins {
     alias(libs.plugins.sqldelightPlugin)
 }
 
-sqldelight{
-    databases{
+sqldelight {
+    databases {
         linkSqlite = true
     }
 }
@@ -44,6 +44,7 @@ kotlin {
             implementation(projects.features.mainScreen.mainScreenImpl)
             implementation(projects.features.dogsScreen.dogsScreenImpl)
             implementation(projects.features.savedDogsScreen.savedDogsScreenImpl)
+            implementation(projects.features.resourcesScreen.resourcesScreenImpl)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

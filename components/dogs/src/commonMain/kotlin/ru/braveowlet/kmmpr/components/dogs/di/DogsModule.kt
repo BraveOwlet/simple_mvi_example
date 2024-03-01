@@ -12,7 +12,7 @@ import ru.braveowlet.kmmpr.components.dogs.domain.usecase.ObserveRandomDogUseCas
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCase
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCaseImpl
 
-val dogsModule = module {
+val dogsModule get() = module {
     single<DogsApi> { DogsApiImpl(get()) }
     single<DogsRepository> { DogsRepositoryImpl(get(), get()) }
     single<GetRandomDogUseCase> { GetRandomDogUseCaseImpl(get()) }
