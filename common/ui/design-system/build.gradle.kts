@@ -1,18 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.sqldelightPlugin)
-}
-
-sqldelight{
-    databases{
-        create("Database"){
-            packageName = "ru.braveowlet.kmmpr.core.database"
-            generateAsync = true
-        }
-        linkSqlite = true
-    }
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 kotlin {
@@ -27,25 +16,18 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    sourceSets{
+    sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.logger)
-            implementation(libs.koin.core)
-            implementation(libs.sqldelight.runtime)
-            implementation(libs.sqldelight.coroutines)
-        }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
-            implementation(libs.sqldelight.android.driver)
-        }
-        iosMain.dependencies {
-            implementation(libs.sqldelight.native.driver)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
         }
     }
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.core.database"
+    namespace = "ru.braveowlet.common.ui.design_system"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

@@ -6,5 +6,9 @@ internal class MainScreenMviStateReducer : MviStateReducer<MainScreenEffect, Mai
     override suspend fun invoke(
         effect: MainScreenEffect,
         previousState: MainScreenState
-    ): MainScreenState = previousState
+    ): MainScreenState = when (effect) {
+        MainScreenEffect.ButtonDogsScreenClicked,
+        MainScreenEffect.ButtonResourcesScreenClicked,
+        MainScreenEffect.ButtonSavedDogsScreenClicked -> previousState
+    }
 }

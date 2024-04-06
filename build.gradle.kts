@@ -10,3 +10,9 @@ plugins {
 task("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
+
+allprojects{
+    task("testClasses")
+}
+
+

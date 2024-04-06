@@ -24,16 +24,17 @@ dependencyResolutionManagement {
 // APP
 include(":app")
 
-// CORE
-include(":core:network")
-include(":core:database")
-include(":core:recources")
-
 // COMMON
 include(":common:mvi:mvi-general")
 include(":common:mvi:mvi-koin")
 include(":common:logger")
 include(":common:platform")
+include(":common:ui:design-system")
+
+// CORE
+include(":core:network")
+include(":core:database")
+include(":core:recources")
 
 // FEATURES
 include(":features:main-screen:main-screen-api")
