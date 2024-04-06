@@ -1,15 +1,15 @@
-CREATE TABLE Dogs (
+CREATE TABLE DogEntity (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     url TEXT NOT NULL
 );
 
 insert:
-INSERT INTO Dogs(url)
+INSERT INTO DogEntity(url)
 VALUES(?);
 
 removeAll:
-DELETE FROM Dogs;
+DELETE FROM DogEntity;
 
 selectAll:
-SELECT Dogs.*
-FROM Dogs;
+SELECT DogEntity.*
+FROM DogEntity;

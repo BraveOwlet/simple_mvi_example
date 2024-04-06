@@ -3,7 +3,8 @@ package ru.braveowlet.kmmpr.features.dogs_screen.impl.mvi
 import ru.braveowlet.common.mvi.koin.MviScreenModel
 
 internal class DogsScreenModel(
-    dogsScreenActor: DogsScreenActor
+    tag : String,
+    dogsScreenActor: DogsScreenActor,
 ) : MviScreenModel<DogsScreenAction, DogsScreenEffect, DogsScreenEvent, DogsScreenState>(
     defaultState = DogsScreenState.default,
     actor = dogsScreenActor,
@@ -11,8 +12,4 @@ internal class DogsScreenModel(
     eventProducer = DogsScreenMviEventProducer(),
     stateReducer = DogsScreenMviStateReducer(),
     tag = tag,
-) {
-    companion object {
-        const val tag: String = "DogsScreen"
-    }
-}
+)

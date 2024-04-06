@@ -5,4 +5,8 @@ import cafe.adriel.voyager.core.screen.Screen
 interface ResourcesScreenApi {
 
     fun resourcesScreen() : Screen
+
+    companion object {
+        const val TAG: String = "ResourcesScreen"
+    }
 }

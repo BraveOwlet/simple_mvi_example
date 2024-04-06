@@ -7,8 +7,10 @@ import ru.braveowlet.kmmpr.features.dogs_screen.api.DogsScreenApi
 import ru.braveowlet.kmmpr.features.dogs_screen.impl.mvi.DogsScreenActor
 import ru.braveowlet.kmmpr.features.dogs_screen.impl.mvi.DogsScreenModel
 
-val dogsScreenModule get() = module {
-    single<DogsScreenActor> { DogsScreenActor(get(), get()) }
-    factory<MviScreenModel<*, *, *, *>>(qualifier(DogsScreenModel.tag)) { DogsScreenModel(get()) }
-    single<DogsScreenApi> { DogsScreenImpl() }
-}
+val dogsScreenModule
+    get() = module {
+        val tag = DogsScreenApi.TAG
+        single<DogsScreenActor> { DogsScreenActor(get(), get()) }
+        factory<MviScreenModel<*, *, *, *>>(qualifier(tag)) { DogsScreenModel(tag, get()) }
+        single<DogsScreenApi> { DogsScreenImpl(tag) }
+    }

@@ -2,7 +2,6 @@ package ru.braveowlet.kmmpr.app
 
 import ru.braveowlet.kmmpr.components.dogs.di.dogsModule
 import ru.braveowlet.kmmpr.core.database.databaseModule
-import ru.braveowlet.kmmpr.core.database.queriesModule
 import ru.braveowlet.kmmpr.core.network.networkModule
 import ru.braveowlet.kmmpr.features.dogs_screen.impl.dogsScreenModule
 import ru.braveowlet.kmmpr.features.main_screen.impl.mainScreenModule
@@ -13,7 +12,6 @@ private val coreModules
     get() = listOf(
         networkModule,
         databaseModule,
-        queriesModule,
     )
 
 private val componentsModules

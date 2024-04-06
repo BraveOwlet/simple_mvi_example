@@ -8,6 +8,7 @@ import ru.braveowlet.kmmpr.features.resources_screen.impl.mvi.ResourcesScreenMod
 
 val resourcesScreenModule
     get() = module {
-        factory<MviScreenModel<*, *, *, *>>(qualifier(ResourcesScreenModel.tag)) { ResourcesScreenModel() }
-        single<ResourcesScreenApi> { ResourcesScreenImpl() }
+        val tag = ResourcesScreenApi.TAG
+        factory<MviScreenModel<*, *, *, *>>(qualifier(tag)) { ResourcesScreenModel(tag) }
+        single<ResourcesScreenApi> { ResourcesScreenImpl(tag) }
     }

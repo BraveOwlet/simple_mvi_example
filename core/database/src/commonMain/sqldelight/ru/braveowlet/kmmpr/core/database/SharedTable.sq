@@ -1,15 +1,15 @@
-CREATE TABLE Shared (
+CREATE TABLE SharedEntity (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     info TEXT
 );
 
 insert:
-INSERT INTO Shared(info)
+INSERT INTO SharedEntity(info)
 VALUES(?);
 
 removeAll:
-DELETE FROM Shared;
+DELETE FROM SharedEntity;
 
 selectAll:
-SELECT Shared.*
-FROM Shared;
+SELECT SharedEntity.*
+FROM SharedEntity;

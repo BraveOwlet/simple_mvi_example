@@ -1,5 +1,12 @@
 package ru.braveowlet.kmmpr.core.database
 
-import org.koin.core.module.Module
-
-expect val databaseModule: Module
+val databaseModule = platformDatabaseModule(
+    fileName = "database.db"
+).apply {
+    single<Queries> {
+        Queries(
+            get<Database>().sharedTableQueries,
+            get<Database>().dogsTableQueries
+        )
+    }
+}
