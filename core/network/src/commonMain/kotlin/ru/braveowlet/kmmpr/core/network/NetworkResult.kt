@@ -10,55 +10,67 @@ import io.ktor.http.HttpStatusCode
 
 suspend inline fun <reified T> HttpClient.fetch(
     block: HttpRequestBuilder.() -> Unit
-): NetworkResult<T> = try {
+): Result<T> = try {
     val response = request(block)
     if (response.status == HttpStatusCode.OK)
-        NetworkResult.Success(response.body())
+        Result.success(response.body())
     else
-        NetworkResult.Error(Throwable("${response.status}: ${response.bodyAsText()}"))
+        Result.failure(Throwable("${response.status}: ${response.bodyAsText()}"))
 } catch (e: Exception) {
-    NetworkResult.Error(e)
+    Result.failure(e)
 }
 
 suspend inline fun <reified T> HttpClient.fetchForGet(
     url: String,
-): NetworkResult<T> = try {
+): Result<T> = try {
     val response = get(url)
     if (response.status == HttpStatusCode.OK)
-        NetworkResult.Success(response.body())
+        Result.success(response.body())
     else
-        NetworkResult.Error(Throwable("${response.status}: ${response.bodyAsText()}"))
+        Result.failure(Throwable("${response.status}: ${response.bodyAsText()}"))
 } catch (e: Exception) {
-    NetworkResult.Error(e)
+    Result.failure(e)
 }
 
-sealed interface NetworkResult<out R> {
-    data class Success<out R>(val value: R) : NetworkResult<R>
-    data class Error(val throwable: Throwable) : NetworkResult<Nothing>
-}
+inline fun <reified R> Result<R>.takeIfSuccess(): R? =
+    if (this.isSuccess) this.getOrNull() else null
 
-inline fun <reified R> NetworkResult<R>.takeIfSuccess(): R? =
-    if (this is NetworkResult.Success) value else null
-
-inline fun <reified R> NetworkResult<R>.handle(
+inline fun <reified R> Result<R>.handle(
     onSuccess: (R) -> Unit,
     onError: (Throwable) -> Unit
-): Unit = when (this) {
-    is NetworkResult.Error -> onError(this.throwable)
-    is NetworkResult.Success -> onSuccess(this.value)
+): Unit = if (this.isSuccess) {
+    try {
+        val value = getOrThrow()
+        onSuccess(value)
+    } catch (e: Exception) {
+        onError(e)
+    }
+} else {
+    onError(this.exceptionOrNull() ?: Throwable())
 }
 
-inline fun <reified R, reified T> NetworkResult<R>.handleMap(
+inline fun <reified R, reified T> Result<R>.handleMap(
     onSuccess: (R) -> T,
     onError: (Throwable) -> T
-): T = when (this) {
-    is NetworkResult.Error -> onError(this.throwable)
-    is NetworkResult.Success -> onSuccess(this.value)
+): T = if (this.isSuccess) {
+    try {
+        val value = getOrThrow()
+        onSuccess(value)
+    } catch (e: Exception) {
+        onError(e)
+    }
+} else {
+    onError(this.exceptionOrNull() ?: Throwable())
 }
 
-inline fun <reified R, reified T> NetworkResult<R>.map(mapper: (R) -> T): NetworkResult<T> =
-    when (this) {
-        is NetworkResult.Error -> NetworkResult.Error(this.throwable)
-        is NetworkResult.Success -> NetworkResult.Success(mapper(this.value))
+inline fun <reified R, reified T> Result<R>.map(mapper: (R) -> T): Result<T> =
+    if (this.isSuccess) {
+        try {
+            val value = getOrThrow()
+            Result.success(mapper(value))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    } else {
+        Result.failure(this.exceptionOrNull() ?: Throwable())
     }
-
