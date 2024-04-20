@@ -17,11 +17,12 @@ import kmmpr.core.recources.generated.resources.back
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import ru.braveowlet.kmmpr.components.dogs.domain.model.Dog
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.model.state.SavedDogsScreenState
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun SavedDogsScreenContent(
-    dogs: List<Dog>,
+    state: SavedDogsScreenState,
     onClickBack: () -> Unit
 ) {
     Scaffold {
@@ -35,7 +36,7 @@ internal fun SavedDogsScreenContent(
             HorizontalDivider()
             LazyColumn {
                 items(
-                    items = dogs,
+                    items = state.dogs,
                     key = { it.url }
                 ) {
                     AsyncImage(

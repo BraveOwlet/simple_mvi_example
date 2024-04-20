@@ -10,7 +10,7 @@ import ru.braveowlet.kmmpr.components.dogs.domain.usecase.ObserveRandomDogUseCas
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenAction
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenEffect
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenEvent
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenState
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.model.state.SavedDogsScreenState
 
 internal class SavedDogsScreenModel(
     tag: String,
@@ -20,13 +20,13 @@ internal class SavedDogsScreenModel(
     tag = tag,
 ) {
 
-    override val reducer: MviReducer<SavedDogsScreenEffect, SavedDogsScreenState> = MviReducer{ effect, previousState ->
-        when(effect){
-            is SavedDogsScreenEffect.DogsUpdated -> previousState.copy(
-                dogs = effect.dogs
-            )
+    override val reducer: MviReducer<SavedDogsScreenEffect, SavedDogsScreenState> =
+        MviReducer { effect, previousState ->
+            when (effect) {
+                is SavedDogsScreenEffect.DogsUpdated ->
+                    previousState.setDog(effect.dogs)
+            }
         }
-    }
 
     override val bootstrap: MviBootstrap = MviBootstrap {
         observeRandomDogUseCase()
@@ -36,7 +36,8 @@ internal class SavedDogsScreenModel(
 
     override val actor: MviActor<SavedDogsScreenAction> = MviActor { action ->
         when (action) {
-            SavedDogsScreenAction.ClickButtonBack -> controller.emit(SavedDogsScreenEvent.NavigateToBack)
+            SavedDogsScreenAction.ClickButtonBack ->
+                controller.emit(SavedDogsScreenEvent.NavigateToBack)
         }
     }
 }

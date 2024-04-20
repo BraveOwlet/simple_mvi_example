@@ -8,7 +8,7 @@ import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.v
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenAction
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenEffect
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenEvent
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.intents.SavedDogsScreenState
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.model.state.SavedDogsScreenState
 
 internal class SavedDogsScreen(
     tag: String,
@@ -24,7 +24,7 @@ internal class SavedDogsScreen(
         }
 
         SavedDogsScreenContent(
-            dogs = state.dogs,
+            state = state,
             onClickBack = {
                 emit(SavedDogsScreenAction.ClickButtonBack)
             }

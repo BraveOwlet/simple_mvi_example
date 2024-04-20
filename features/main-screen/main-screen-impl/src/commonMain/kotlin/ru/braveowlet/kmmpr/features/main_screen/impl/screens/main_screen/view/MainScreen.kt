@@ -11,7 +11,7 @@ import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.view.co
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenAction
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenEffect
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenEvent
-import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenState
+import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.model.state.MainScreenState
 import ru.braveowlet.kmmpr.features.resources_screen.api.ResourcesScreenApi
 
 internal class MainScreen(

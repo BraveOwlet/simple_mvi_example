@@ -5,7 +5,7 @@ import ru.braveowlet.common.mvi.impl.MviModel
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenAction
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenEffect
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenEvent
-import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenState
+import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.model.state.MainScreenState
 
 internal class MainScreenModel(
     tag: String
@@ -25,9 +25,8 @@ internal class MainScreenModel(
             is MainScreenAction.ClickButtonResourcesScreen ->
                 controller.emit(MainScreenEvent.NavigateToResourcesScreen)
 
-            is MainScreenAction.ClickButtonFlowTestScreen -> controller.emit(
-                MainScreenEvent.NavigateToFlowTestScreen
-            )
+            is MainScreenAction.ClickButtonFlowTestScreen ->
+                controller.emit(MainScreenEvent.NavigateToFlowTestScreen)
         }
     }
 }

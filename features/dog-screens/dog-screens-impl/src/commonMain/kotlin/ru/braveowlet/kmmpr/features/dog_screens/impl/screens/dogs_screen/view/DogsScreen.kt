@@ -10,7 +10,7 @@ import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.view.co
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.intents.DogsScreenAction
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.intents.DogsScreenEffect
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.intents.DogsScreenEvent
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.intents.DogsScreenState
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.model.state.DogsScreenState
 
 internal class DogsScreen(
     tag: String
@@ -32,7 +32,7 @@ internal class DogsScreen(
         }
 
         DogsScreenContent(
-            dog = state.dog,
+            state = state,
             snackbarHostState = snackbarHostState,
             onClickButtonBack = {
                 emit(DogsScreenAction.ClickButtonBack)

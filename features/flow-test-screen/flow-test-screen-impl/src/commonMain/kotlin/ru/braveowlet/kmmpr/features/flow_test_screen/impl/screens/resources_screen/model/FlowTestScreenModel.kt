@@ -39,7 +39,7 @@ internal class FlowTestScreenModel(
 ) {
 
     private var job: Job? = null
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Unconfined
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
     private val flow1: MutableStateFlow<FlowTestValue?> = MutableStateFlow(null)
     private val flow2: MutableStateFlow<FlowTestValue?> = MutableStateFlow(null)
     private val resultFlow: MutableStateFlow<FlowTestResult?> = MutableStateFlow(null)
@@ -196,10 +196,10 @@ internal class FlowTestScreenModel(
         if (isRun) {
             job = screenModelScope.launch {
                 while (true) {
-                    flow1.update { it?.nextValue() }
+                    flow1.update { it.nextValue() }
                     //delay(1)
-                    flow2.update { it?.nextValue() }
-                    delay(25)
+                    flow2.update { it.nextValue() }
+                    delay(10)
                 }
             }
         }

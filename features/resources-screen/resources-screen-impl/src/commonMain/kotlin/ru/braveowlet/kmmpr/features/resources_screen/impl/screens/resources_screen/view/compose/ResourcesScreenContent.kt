@@ -24,7 +24,7 @@ import kmmpr.core.recources.generated.resources.resources_screen_strings
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.intents.ResourcesScreenState
+import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.model.state.ResourcesScreenState
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable

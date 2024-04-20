@@ -17,11 +17,12 @@ import kmmpr.core.recources.generated.resources.dogs_screen_button_save_dog
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import ru.braveowlet.kmmpr.components.dogs.domain.model.Dog
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.model.state.DogsScreenState
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun DogsScreenContent(
-    dog: Dog?,
+    state: DogsScreenState,
     snackbarHostState: SnackbarHostState,
     onClickButtonBack: () -> Unit,
     onClickButtonGetDog: () -> Unit,
@@ -41,16 +42,16 @@ internal fun DogsScreenContent(
             ) {
                 Text(stringResource(Res.string.dogs_screen_button_get_dog))
             }
-            if (dog!=null) {
-                Text(dog.url)
+            if (state.dog!=null) {
+                Text(state.dog.url)
                 AsyncImage(
                     modifier = Modifier.fillMaxWidth(),
-                    model = dog.url,
+                    model = state.dog.url,
                     contentDescription = null,
                 )
                 Button(
                     onClick = {
-                        onClickButtonSaveDog(dog)
+                        onClickButtonSaveDog(state.dog)
                     }
                 ) {
                     Text(stringResource(Res.string.dogs_screen_button_save_dog))

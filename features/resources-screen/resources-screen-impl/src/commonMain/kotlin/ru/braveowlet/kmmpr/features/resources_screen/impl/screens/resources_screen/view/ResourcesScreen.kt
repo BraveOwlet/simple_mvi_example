@@ -8,7 +8,7 @@ import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_scre
 import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.intents.ResourcesScreenAction
 import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.intents.ResourcesScreenEffect
 import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.intents.ResourcesScreenEvent
-import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.intents.ResourcesScreenState
+import ru.braveowlet.kmmpr.features.resources_screen.impl.screens.resources_screen.model.state.ResourcesScreenState
 
 internal class ResourcesScreen(
     tag: String

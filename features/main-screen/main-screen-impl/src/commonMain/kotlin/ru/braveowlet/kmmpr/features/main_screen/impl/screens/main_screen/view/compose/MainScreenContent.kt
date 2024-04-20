@@ -17,7 +17,7 @@ import kmmpr.core.recources.generated.resources.main_screen_button_go_to_saved_d
 import kmmpr.core.recources.generated.resources.main_screen_button_go_to_flow_test_screen
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
-import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenState
+import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.model.state.MainScreenState
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable

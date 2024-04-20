@@ -108,10 +108,8 @@ private fun RowScope.FlowTestValueList(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(
-                        width = 2.dp,
-                        color = if (value.isRight) Color.Transparent else Color.Red
-                    )
+                    .background(color = if (value.isRight) Color.Transparent else Color.Red)
+                    .padding(start = 2.dp)
             ){
                 Text(
                     text = value.toString(),
