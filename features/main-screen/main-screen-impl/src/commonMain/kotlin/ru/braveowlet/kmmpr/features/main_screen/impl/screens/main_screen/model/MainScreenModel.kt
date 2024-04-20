@@ -24,6 +24,10 @@ internal class MainScreenModel(
 
             is MainScreenAction.ClickButtonResourcesScreen ->
                 controller.emit(MainScreenEvent.NavigateToResourcesScreen)
+
+            is MainScreenAction.ClickButtonFlowTestScreen -> controller.emit(
+                MainScreenEvent.NavigateToFlowTestScreen
+            )
         }
     }
 }

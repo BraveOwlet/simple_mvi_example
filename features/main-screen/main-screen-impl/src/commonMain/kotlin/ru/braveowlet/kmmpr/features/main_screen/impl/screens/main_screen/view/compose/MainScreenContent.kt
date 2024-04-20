@@ -14,6 +14,7 @@ import kmmpr.core.recources.generated.resources.Res
 import kmmpr.core.recources.generated.resources.main_screen_button_go_to_dogs_screen
 import kmmpr.core.recources.generated.resources.main_screen_button_go_to_resources_screen
 import kmmpr.core.recources.generated.resources.main_screen_button_go_to_saved_dogs_screen
+import kmmpr.core.recources.generated.resources.main_screen_button_go_to_flow_test_screen
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.intents.MainScreenState
@@ -25,6 +26,7 @@ internal fun MainScreenContent(
     onClickButtonDogsScreen: () -> Unit,
     onClickButtonSavedDogsScreen: () -> Unit,
     onClickButtonResourcesScreen: () -> Unit,
+    onClickButtonFlowTestScreen: () -> Unit,
 ) {
     MaterialTheme {
         Scaffold {
@@ -50,6 +52,12 @@ internal fun MainScreenContent(
                     onClick = onClickButtonResourcesScreen
                 ) {
                     Text(stringResource(Res.string.main_screen_button_go_to_resources_screen))
+                }
+
+                Button(
+                    onClick = onClickButtonFlowTestScreen
+                ) {
+                    Text(stringResource(Res.string.main_screen_button_go_to_flow_test_screen))
                 }
             }
         }

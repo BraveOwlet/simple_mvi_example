@@ -23,11 +23,10 @@ kotlin {
             implementation(projects.common.mvi.mviGeneral)
             implementation(projects.common.mvi.mviKoinVoyager)
             implementation(projects.core.recources)
-            implementation(projects.features.mainScreen.mainScreenApi)
-            implementation(projects.features.dogScreens.dogScreensApi)
-            implementation(projects.features.resourcesScreen.resourcesScreenApi)
             implementation(projects.features.flowTestScreen.flowTestScreenApi)
+
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
@@ -45,7 +44,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.features.main_screen.impl"
+    namespace = "ru.braveowlet.kmmpr.features.resources_screen.impl"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

@@ -44,6 +44,7 @@ kotlin {
             implementation(projects.features.mainScreen.mainScreenImpl)
             implementation(projects.features.dogScreens.dogScreensImpl)
             implementation(projects.features.resourcesScreen.resourcesScreenImpl)
+            implementation(projects.features.flowTestScreen.flowTestScreenImpl)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

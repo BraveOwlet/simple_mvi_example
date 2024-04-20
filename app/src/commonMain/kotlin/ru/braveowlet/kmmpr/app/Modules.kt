@@ -4,6 +4,7 @@ import ru.braveowlet.kmmpr.components.dogs.di.dogsModule
 import ru.braveowlet.kmmpr.core.database.databaseModule
 import ru.braveowlet.kmmpr.core.network.networkModule
 import ru.braveowlet.kmmpr.features.dog_screens.impl.dogScreensModule
+import ru.braveowlet.kmmpr.features.flow_test_screen.impl.flowTestScreenModule
 import ru.braveowlet.kmmpr.features.main_screen.impl.mainScreenModule
 import ru.braveowlet.kmmpr.features.resources_screen.impl.resourcesScreenModule
 
@@ -23,6 +24,7 @@ private val featureModules
         mainScreenModule,
         dogScreensModule,
         resourcesScreenModule,
+        flowTestScreenModule,
     )
 
 val appModules

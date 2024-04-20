@@ -19,25 +19,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.logger)
-            implementation(projects.common.mvi.mviGeneral)
-            implementation(projects.common.mvi.mviKoinVoyager)
-            implementation(projects.core.recources)
-            implementation(projects.features.mainScreen.mainScreenApi)
-            implementation(projects.features.dogScreens.dogScreensApi)
-            implementation(projects.features.resourcesScreen.resourcesScreenApi)
-            implementation(projects.features.flowTestScreen.flowTestScreenApi)
-            implementation(libs.kotlinx.coroutines.core)
-
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
-
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
-            implementation(compose.components.resources)
-
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
         }
@@ -45,7 +30,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.features.main_screen.impl"
+    namespace = "ru.braveowlet.kmmpr.features.resources_screen.api"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -63,8 +48,5 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
-    }
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
     }
 }

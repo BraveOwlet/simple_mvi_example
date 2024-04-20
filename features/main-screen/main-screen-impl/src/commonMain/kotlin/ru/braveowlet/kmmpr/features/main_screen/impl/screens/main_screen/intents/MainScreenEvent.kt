@@ -6,4 +6,5 @@ internal sealed interface MainScreenEvent : MviEvent {
     data object NavigateToDogsScreen : MainScreenEvent
     data object NavigateToSavedDogsScreen : MainScreenEvent
     data object NavigateToResourcesScreen : MainScreenEvent
+    data object NavigateToFlowTestScreen : MainScreenEvent
 }
