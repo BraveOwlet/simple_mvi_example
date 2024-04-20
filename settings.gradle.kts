@@ -26,7 +26,7 @@ include(":app")
 
 // COMMON
 include(":common:mvi:mvi-general")
-include(":common:mvi:mvi-koin")
+include(":common:mvi:mvi-koin-voyager")
 include(":common:logger")
 include(":common:platform")
 include(":common:ui:design-system")
@@ -39,10 +39,8 @@ include(":core:recources")
 // FEATURES
 include(":features:main-screen:main-screen-api")
 include(":features:main-screen:main-screen-impl")
-include(":features:dogs-screen:dogs-screen-api")
-include(":features:dogs-screen:dogs-screen-impl")
-include(":features:saved-dogs-screen:saved-dogs-screen-api")
-include(":features:saved-dogs-screen:saved-dogs-screen-impl")
+include(":features:dog-screens:dog-screens-api")
+include(":features:dog-screens:dog-screens-impl")
 include(":features:resources-screen:resources-screen-api")
 include(":features:resources-screen:resources-screen-impl")
 

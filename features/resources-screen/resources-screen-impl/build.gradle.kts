@@ -21,7 +21,7 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.common.mvi.mviGeneral)
-            implementation(projects.common.mvi.mviKoin)
+            implementation(projects.common.mvi.mviKoinVoyager)
             implementation(projects.core.recources)
             implementation(projects.features.resourcesScreen.resourcesScreenApi)
             implementation(libs.kotlinx.coroutines.core)

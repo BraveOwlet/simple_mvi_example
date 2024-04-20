@@ -21,12 +21,11 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.common.mvi.mviGeneral)
-            implementation(projects.common.mvi.mviKoin)
+            implementation(projects.common.mvi.mviKoinVoyager)
             implementation(projects.core.recources)
             implementation(projects.features.mainScreen.mainScreenApi)
-            implementation(projects.features.dogsScreen.dogsScreenApi)
+            implementation(projects.features.dogScreens.dogScreensApi)
             implementation(projects.features.resourcesScreen.resourcesScreenApi)
-            implementation(projects.features.savedDogsScreen.savedDogsScreenApi)
             implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.koin.core)

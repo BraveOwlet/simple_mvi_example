@@ -5,8 +5,8 @@ val databaseModule = platformDatabaseModule(
 ).apply {
     single<Queries> {
         Queries(
-            get<Database>().sharedTableQueries,
-            get<Database>().dogsTableQueries
+            get<Database>().sharedEntityQueries,
+            get<Database>().dogEntityQueries
         )
     }
 }
