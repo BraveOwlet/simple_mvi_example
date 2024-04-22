@@ -1,7 +1,7 @@
 package ru.braveowlet.kmmpr.features.flow_test_screen.impl.screens.resources_screen.model
 
 import cafe.adriel.voyager.core.model.screenModelScope
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
+import ru.braveowlet.common.logger.getThreadName
 import ru.braveowlet.common.mvi.general.models.MviActor
 import ru.braveowlet.common.mvi.general.models.MviBootstrap
 import ru.braveowlet.common.mvi.general.models.MviReducer
@@ -39,7 +40,6 @@ internal class FlowTestScreenModel(
 ) {
 
     private var job: Job? = null
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
     private val flow1: MutableStateFlow<FlowTestValue?> = MutableStateFlow(null)
     private val flow2: MutableStateFlow<FlowTestValue?> = MutableStateFlow(null)
     private val resultFlow: MutableStateFlow<FlowTestResult?> = MutableStateFlow(null)
@@ -93,7 +93,7 @@ internal class FlowTestScreenModel(
         }
     }
 
-    /*private fun subscribeFlow1Flow2() {
+    /*private fun CoroutineScope.subscribeFlow1Flow2() {
         val flow: MutableStateFlow<Pair<FlowTestValue?, FlowTestValue?>> =
             MutableStateFlow(Pair(null, null))
 
@@ -115,8 +115,8 @@ internal class FlowTestScreenModel(
                     )
                 }
             }
-            .flowOn(dispatcher)
-            .launchIn(screenModelScope)
+            .flowOn(Dispatchers.Unconfined)
+            .launchIn(this)
 
         flow2
             .filterNotNull()
@@ -136,26 +136,27 @@ internal class FlowTestScreenModel(
                     )
                 }
             }
-            .flowOn(dispatcher)
-            .launchIn(screenModelScope)
+            .flowOn(Dispatchers.Unconfined)
+            .launchIn(this)
 
         flow
             .filterNotNull()
             .onEach {
                 it.first?.let { first ->
                     it.second?.let { second ->
-                        resultFlow.emit(first.value to second.value)
+                        resultFlow.emit(FlowTestResult(first.value, second.value))
                     }
                 }
             }
-            .flowOn(dispatcher)
-            .launchIn(screenModelScope)
+            .flowOn(Dispatchers.Default)
+            .launchIn(this)
     }*/
 
-    private fun subscribeFlow1Flow2() = combine(
+    private fun CoroutineScope.subscribeFlow1Flow2() = combine(
         flow1
             .filterNotNull()
             .onEach {
+                controller.log("flow1 onEach -> ${getThreadName()}")
                 controller.emit(
                     FlowTestScreenEffect.AddValue1(
                         value = it.value,
@@ -167,6 +168,7 @@ internal class FlowTestScreenModel(
         flow2
             .filterNotNull()
             .onEach {
+                controller.log("flow2 onEach -> ${getThreadName()}")
                 controller.emit(
                     FlowTestScreenEffect.AddValue2(
                         value = it.value,
@@ -176,18 +178,18 @@ internal class FlowTestScreenModel(
                 )
             }
     ) { value1, value2 ->
+        controller.log("combine -> ${getThreadName()}")
         resultFlow.emit(FlowTestResult(value1.value, value2.value))
-    }.flowOn(dispatcher)
-        .launchIn(screenModelScope)
+    }.flowOn(Dispatchers.Unconfined)
+        .launchIn(this)
 
 
-    private fun subscribeResultFlow() = resultFlow
+    private fun CoroutineScope.subscribeResultFlow() = resultFlow
         .filterNotNull()
         .onEach {
             controller.emit(FlowTestScreenEffect.AddResult(it.value1, it.value2))
         }
-        .flowOn(dispatcher)
-        .launchIn(screenModelScope)
+        .launchIn(this)
 
 
     private fun changeStateFlowTest(isRun: Boolean) {
