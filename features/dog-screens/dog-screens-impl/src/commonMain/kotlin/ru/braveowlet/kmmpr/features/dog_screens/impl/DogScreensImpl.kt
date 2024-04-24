@@ -2,8 +2,8 @@ package ru.braveowlet.kmmpr.features.dog_screens.impl
 
 import cafe.adriel.voyager.core.screen.Screen
 import ru.braveowlet.kmmpr.features.dog_screens.api.DogScreensApi
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.view.DogsScreen
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.view.SavedDogsScreen
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.DogsScreen
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.SavedDogsScreen
 
 internal class DogScreensImpl(
     private val dogsScreenTag: String,

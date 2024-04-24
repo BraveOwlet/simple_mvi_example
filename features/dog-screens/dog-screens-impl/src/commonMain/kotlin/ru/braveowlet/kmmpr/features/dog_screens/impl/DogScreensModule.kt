@@ -4,8 +4,8 @@ import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
 import ru.braveowlet.common.mvi.impl.MviModel
 import ru.braveowlet.kmmpr.features.dog_screens.api.DogScreensApi
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.model.DogsScreenModel
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.model.SavedDogsScreenModel
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.DogsScreenModel
+import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.SavedDogsScreenModel
 
 val dogScreensModule
     get() = module {
