@@ -3,13 +3,13 @@ package ru.braveowlet.kmmpr.components.dogs.data.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.braveowlet.kmmpr.components.dogs.data.api.DogsApi
-import ru.braveowlet.kmmpr.components.dogs.data.dao.DogsDao
 import ru.braveowlet.kmmpr.components.dogs.data.dto.DogDto
 import ru.braveowlet.kmmpr.components.dogs.data.mapper.toDomain
 import ru.braveowlet.kmmpr.components.dogs.data.mapper.toEntity
 import ru.braveowlet.kmmpr.components.dogs.domain.model.Dog
 import ru.braveowlet.kmmpr.components.dogs.domain.repository.DogsRepository
-import ru.braveowlet.kmmpr.core.database.DogEntity
+import ru.braveowlet.kmmpr.core.database.domain.dogs.DogEntity
+import ru.braveowlet.kmmpr.core.database.domain.dogs.DogsDao
 import ru.braveowlet.kmmpr.core.network.map
 
 internal class DogsRepositoryImpl(

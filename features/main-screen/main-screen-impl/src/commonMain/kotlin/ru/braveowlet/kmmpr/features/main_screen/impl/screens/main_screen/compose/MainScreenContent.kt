@@ -1,63 +1,85 @@
 package ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.compose
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import kmmpr.core.recources.generated.resources.Res
 import kmmpr.core.recources.generated.resources.main_screen_button_go_to_dogs_screen
-import kmmpr.core.recources.generated.resources.main_screen_button_go_to_resources_screen
 import kmmpr.core.recources.generated.resources.main_screen_button_go_to_saved_dogs_screen
-import kmmpr.core.recources.generated.resources.main_screen_button_go_to_flow_test_screen
+import kmmpr.core.recources.generated.resources.main_screen_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenState
 
-@OptIn(ExperimentalResourceApi::class)
+@OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun MainScreenContent(
     state: MainScreenState,
     onClickButtonDogsScreen: () -> Unit,
     onClickButtonSavedDogsScreen: () -> Unit,
-    onClickButtonResourcesScreen: () -> Unit,
-    onClickButtonFlowTestScreen: () -> Unit,
 ) {
     MaterialTheme {
-        Scaffold {
-            Column(
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(stringResource(Res.string.main_screen_title))
+                    },
+                )
+            }
+        ){
+            LazyColumn (
                 modifier = Modifier
                     .padding(it)
-                    .fillMaxWidth(),
+                    .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Button(
-                    onClick = onClickButtonDogsScreen
-                ) {
-                    Text(stringResource(Res.string.main_screen_button_go_to_dogs_screen))
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .padding(horizontal = 20.dp)
+                            .padding(vertical = 20.dp),
+                        onClick = onClickButtonDogsScreen
+                    ){
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(stringResource(Res.string.main_screen_button_go_to_dogs_screen))
+                        }
+                    }
                 }
-
-                Button(
-                    onClick = onClickButtonSavedDogsScreen
-                ) {
-                    Text(stringResource(Res.string.main_screen_button_go_to_saved_dogs_screen))
-                }
-
-                Button(
-                    onClick = onClickButtonResourcesScreen
-                ) {
-                    Text(stringResource(Res.string.main_screen_button_go_to_resources_screen))
-                }
-
-                Button(
-                    onClick = onClickButtonFlowTestScreen
-                ) {
-                    Text(stringResource(Res.string.main_screen_button_go_to_flow_test_screen))
+                item {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .padding(horizontal = 20.dp)
+                            .padding(bottom = 20.dp),
+                        onClick = onClickButtonSavedDogsScreen
+                    ){
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ){
+                            Text(stringResource(Res.string.main_screen_button_go_to_saved_dogs_screen))
+                        }
+                    }
                 }
             }
         }

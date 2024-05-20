@@ -99,7 +99,7 @@
 				B92378962B6B1156000C7307 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
 				4E0E2DAA2B836B9B008A4FB0 /* StringsCopyScript */,
-				4E41AE502B90CA68002B8FD3 /* DravableCopyScript */,
+				4E41AE502B90CA68002B8FD3 /* DrawableCopyScript */,
 			);
 			buildRules = (
 			);
@@ -178,7 +178,7 @@
 			shellPath = /bin/sh;
 			shellScript = "mkdir -p \"$BUILT_PRODUCTS_DIR\"/\"$CONTENTS_FOLDER_PATH\"/compose-resources/values\ncp \"$SRCROOT/../core/recources/src/commonMain/composeResources/values\"/*.xml \\\n    \"$BUILT_PRODUCTS_DIR\"/\"$CONTENTS_FOLDER_PATH\"/compose-resources/values\n";
 		};
-		4E41AE502B90CA68002B8FD3 /* DravableCopyScript */ = {
+		4E41AE502B90CA68002B8FD3 /* DrawableCopyScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -187,7 +187,7 @@
 			);
 			inputPaths = (
 			);
-			name = DravableCopyScript;
+			name = DrawableCopyScript;
 			outputFileListPaths = (
 			);
 			outputPaths = (

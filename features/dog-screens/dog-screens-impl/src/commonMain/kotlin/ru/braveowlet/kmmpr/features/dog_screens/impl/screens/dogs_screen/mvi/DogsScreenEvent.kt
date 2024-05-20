@@ -1,6 +1,6 @@
 package ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi
 
-import ru.braveowlet.common.mvi.general.api.models.MviEvent
+import ru.braveowlet.common.mvi.general.MviEvent
 
 internal sealed interface DogsScreenEvent : MviEvent {
     data object NavigateToBack : DogsScreenEvent

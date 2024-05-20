@@ -1,0 +1,15 @@
+CREATE TABLE DogTable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT NOT NULL
+);
+
+insert:
+INSERT INTO DogTable(url)
+VALUES(?);
+
+removeAll:
+DELETE FROM DogTable;
+
+selectAll:
+SELECT DogTable.*
+FROM DogTable;

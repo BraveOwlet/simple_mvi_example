@@ -25,8 +25,6 @@ kotlin {
             implementation(projects.core.recources)
             implementation(projects.features.mainScreen.mainScreenApi)
             implementation(projects.features.dogScreens.dogScreensApi)
-            implementation(projects.features.resourcesScreen.resourcesScreenApi)
-            implementation(projects.features.flowTestScreen.flowTestScreenApi)
             implementation(libs.kotlinx.coroutines.core)
 
             implementation(libs.koin.core)

@@ -29,7 +29,6 @@ include(":common:mvi:mvi-general")
 include(":common:mvi:mvi-koin-voyager")
 include(":common:logger")
 include(":common:platform")
-include(":common:ui:design-system")
 
 // CORE
 include(":core:network")
@@ -41,10 +40,6 @@ include(":features:main-screen:main-screen-api")
 include(":features:main-screen:main-screen-impl")
 include(":features:dog-screens:dog-screens-api")
 include(":features:dog-screens:dog-screens-impl")
-include(":features:resources-screen:resources-screen-api")
-include(":features:resources-screen:resources-screen-impl")
-include(":features:flow-test-screen:flow-test-screen-api")
-include(":features:flow-test-screen:flow-test-screen-impl")
 
 // COMPONENTS
 include(":components:dogs:dogs")

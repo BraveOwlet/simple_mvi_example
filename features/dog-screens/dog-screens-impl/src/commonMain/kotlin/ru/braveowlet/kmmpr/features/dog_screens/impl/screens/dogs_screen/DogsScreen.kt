@@ -4,8 +4,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.remember
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import ru.braveowlet.common.mvi.general.api.base.collectEvent
-import ru.braveowlet.common.mvi.impl.MviScreen
+import ru.braveowlet.common.mvi.general.collectEvent
+import ru.braveowlet.common.mvi.impl.MviView
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.compose.DogsScreenContent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenAction
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenEffect
@@ -14,7 +14,7 @@ import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.Dog
 
 internal class DogsScreen(
     tag: String
-) : MviScreen<DogsScreenAction, DogsScreenEffect, DogsScreenEvent, DogsScreenState>(
+) : MviView<DogsScreenAction, DogsScreenEffect, DogsScreenEvent, DogsScreenState>(
     tag = tag,
     content = { state ->
         val navigator = LocalNavigator.currentOrThrow

@@ -1,6 +1,5 @@
 package ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen
 
-import kotlinx.coroutines.CoroutineScope
 import ru.braveowlet.common.mvi.impl.MviModel
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.GetRandomDogUseCase
 import ru.braveowlet.kmmpr.components.dogs.domain.usecase.SaveDogUseCase
@@ -27,13 +26,13 @@ internal class DogsScreenModel(
         is DogsScreenEffect.DogLoaded -> previousState.setDog(effect.dog)
     }
 
-    override suspend fun invokeActor(action: DogsScreenAction, scope: CoroutineScope) =
+    override suspend fun invokeActor(action: DogsScreenAction) =
         when (action) {
             is DogsScreenAction.ClickButtonBack ->
-                interractor.push(DogsScreenEvent.NavigateToBack)
+                mvi.push(DogsScreenEvent.NavigateToBack)
 
             is DogsScreenAction.ClickButtonGetDog ->
-                interractor.push(processClickButtonGetDog(getRandomDogUseCase))
+                mvi.push(processClickButtonGetDog(getRandomDogUseCase))
 
             is DogsScreenAction.ClickButtonSaveDog ->
                 saveDogUseCase(action.dog)

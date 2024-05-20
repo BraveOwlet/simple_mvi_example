@@ -1,7 +1,6 @@
 package ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen
 
 import cafe.adriel.voyager.core.model.screenModelScope
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.braveowlet.common.mvi.impl.MviModel
@@ -19,9 +18,9 @@ internal class SavedDogsScreenModel(
     tag = tag,
 ) {
 
-    override suspend fun invokeBootstrap(scope: CoroutineScope) {
+    override suspend fun invokeBootstrap() {
         observeRandomDogUseCase()
-            .onEach { interractor.push(SavedDogsScreenEffect.DogsUpdated(it)) }
+            .onEach { mvi.push(SavedDogsScreenEffect.DogsUpdated(it)) }
             .launchIn(screenModelScope)
     }
 
@@ -32,9 +31,9 @@ internal class SavedDogsScreenModel(
         is SavedDogsScreenEffect.DogsUpdated -> previousState.setDog(effect.dogs)
     }
 
-    override suspend fun invokeActor(action: SavedDogsScreenAction, scope: CoroutineScope) =
+    override suspend fun invokeActor(action: SavedDogsScreenAction) =
         when (action) {
             SavedDogsScreenAction.ClickButtonBack ->
-                interractor.push(SavedDogsScreenEvent.NavigateToBack)
+                mvi.push(SavedDogsScreenEvent.NavigateToBack)
         }
 }

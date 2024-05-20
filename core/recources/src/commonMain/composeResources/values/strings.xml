@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--> COMMON <-->
     <string name="app_name">KMM_PR</string>
     <string name="back">Back</string>
 
     <!--> MAIN_SCREEN <-->
-    <string name="main_screen_button_go_to_dogs_screen">Dogs</string>
-    <string name="main_screen_button_go_to_saved_dogs_screen">Saved dogs</string>
-    <string name="main_screen_button_go_to_resources_screen">Resources</string>
-    <string name="main_screen_button_go_to_flow_test_screen">FlowTest</string>
+    <string name="main_screen_title">Main Screen</string>
+    <string name="main_screen_button_go_to_dogs_screen">Dogs Screen</string>
+    <string name="main_screen_button_go_to_saved_dogs_screen">Saved Dogs Screen</string>
 
     <!--> DOGS_SCREEN <-->
-    <string name="dogs_screen_button_get_dog">Get dog</string>
-    <string name="dogs_screen_button_save_dog">Save dog</string>
+    <string name="dogs_screen_title">Dogs Screen</string>
+    <string name="dogs_screen_button_get_dog">Get</string>
+    <string name="dogs_screen_button_save_dog">Save</string>
 
     <!--> SAVED_DOGS_SCREEN <-->
-
-    <!--> RESOURCES_SCREEN <-->
-    <string name="resources_screen_strings">Строки</string>
-    <string name="resources_screen_drawable">Картинки</string>
-
-    <!--> FLOW_TEST_SCREEN <-->
-    <string name="flow_test_screen_run_test">Запустить поток</string>
-    <string name="flow_test_screen_stop_test">Остановить поток</string>
-    <string name="flow_test_screen_clean">Очистить данные</string>
+    <string name="saved_dogs_screen_title">Saved Dogs Screen</string>
 </resources>
