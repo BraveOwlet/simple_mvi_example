@@ -98,8 +98,6 @@
 				7555FF77242A565900829871 /* Sources */,
 				B92378962B6B1156000C7307 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
-				4E0E2DAA2B836B9B008A4FB0 /* StringsCopyScript */,
-				4E41AE502B90CA68002B8FD3 /* DrawableCopyScript */,
 			);
 			buildRules = (
 			);
@@ -160,42 +158,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4E0E2DAA2B836B9B008A4FB0 /* StringsCopyScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = StringsCopyScript;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$BUILT_PRODUCTS_DIR\"/\"$CONTENTS_FOLDER_PATH\"/compose-resources/values\ncp \"$SRCROOT/../core/recources/src/commonMain/composeResources/values\"/*.xml \\\n    \"$BUILT_PRODUCTS_DIR\"/\"$CONTENTS_FOLDER_PATH\"/compose-resources/values\n";
-		};
-		4E41AE502B90CA68002B8FD3 /* DrawableCopyScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = DrawableCopyScript;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$BUILT_PRODUCTS_DIR\"/\"$CONTENTS_FOLDER_PATH\"/compose-resources/drawable\ncp \"$SRCROOT/../core/recources/src/commonMain/composeResources/drawable\"/*.* \\\n    \"$BUILT_PRODUCTS_DIR\"/\"$CONTENTS_FOLDER_PATH\"/compose-resources/drawable\n\n";
-		};
 		F36B1CEB2AD83DDC00CB74D5 /* Compile Kotlin Framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

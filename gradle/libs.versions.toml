@@ -1,31 +1,28 @@
 [versions]
 # Gradle
-agp = "8.3.1"
-java-version-int = "17"
-java-version-string = "VERSION_17"
+agp = "8.4.1"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
 
 # Android
-androidx-activityCompose = "1.8.2"
+androidx-activityCompose = "1.9.0"
 androidx-appcompat = "1.6.1"
 androidx-constraintlayout = "2.1.4"
-androidx-core-ktx = "1.12.0"
+androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.5.1"
-androidx-material = "1.11.0"
+androidx-material = "1.12.0"
 androidx-test-junit = "1.1.5"
-androidx-lifecycle = "2.7.0"
+androidx-lifecycle = "2.8.0"
 
-# Compose "1.5.11-dev-k2.0.0-Beta5-b5a216d0ac6"
-compose-compiler = "1.5.11-dev-k2.0.0-Beta4-21f5e479a96"
-compose = "1.7.0-alpha06"
-compose-saveable = "1.6.1"
-compose-plugin = "1.6.0"
+# Compose
+compose-ui = "1.7.0-beta01"
+compose-saveable = "1.6.10"
+compose-plugin = "1.6.10"
 compose-material3 = "1.2.1"
 
 # Kotlin
-kotlin = "2.0.0-Beta4"
+kotlin = "2.0.0"
 kotlinx-coroutines = "1.8.0"
 kotlinx-serialization = "1.6.3"
 kotlinx-datetime = "0.6.0-RC.2"
@@ -76,10 +73,10 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 
 # Compose
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-ui" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-ui" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-ui" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose-ui" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 compose-runtime-saveable = {module = "org.jetbrains.compose.runtime:runtime-saveable", version.ref = "compose-saveable"}
 
@@ -136,6 +133,7 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
 # Compose
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 # Sqldelight
 sqldelightPlugin = {id = "app.cash.sqldelight", version.ref = "sqldelight"}

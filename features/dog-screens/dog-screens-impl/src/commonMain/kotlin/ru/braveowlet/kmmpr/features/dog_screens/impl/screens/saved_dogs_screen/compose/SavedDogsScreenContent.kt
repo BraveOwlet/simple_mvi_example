@@ -1,7 +1,6 @@
 package ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.compose
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,15 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.AsyncImage
-import kmmpr.core.recources.generated.resources.Res
-import kmmpr.core.recources.generated.resources.ic_arrow_back
-import kmmpr.core.recources.generated.resources.saved_dogs_screen_title
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import ru.braveowlet.kmmpr.core.resources.Res
+import ru.braveowlet.kmmpr.core.resources.ic_arrow_back
+import ru.braveowlet.kmmpr.core.resources.saved_dogs_screen_title
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.mvi.SavedDogsScreenState
 
-@OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SavedDogsScreenContent(
     state: SavedDogsScreenState,

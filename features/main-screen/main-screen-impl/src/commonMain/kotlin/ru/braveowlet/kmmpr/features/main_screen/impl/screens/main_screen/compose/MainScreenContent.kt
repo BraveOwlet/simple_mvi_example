@@ -16,15 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kmmpr.core.recources.generated.resources.Res
-import kmmpr.core.recources.generated.resources.main_screen_button_go_to_dogs_screen
-import kmmpr.core.recources.generated.resources.main_screen_button_go_to_saved_dogs_screen
-import kmmpr.core.recources.generated.resources.main_screen_title
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import ru.braveowlet.kmmpr.core.resources.Res
+import ru.braveowlet.kmmpr.core.resources.main_screen_button_go_to_dogs_screen
+import ru.braveowlet.kmmpr.core.resources.main_screen_button_go_to_saved_dogs_screen
+import ru.braveowlet.kmmpr.core.resources.main_screen_title
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenState
 
-@OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MainScreenContent(
     state: MainScreenState,

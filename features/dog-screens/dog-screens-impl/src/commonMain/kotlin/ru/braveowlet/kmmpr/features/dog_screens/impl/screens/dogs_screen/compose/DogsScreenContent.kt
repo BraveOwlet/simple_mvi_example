@@ -17,18 +17,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.AsyncImage
-import kmmpr.core.recources.generated.resources.Res
-import kmmpr.core.recources.generated.resources.dogs_screen_button_get_dog
-import kmmpr.core.recources.generated.resources.dogs_screen_button_save_dog
-import kmmpr.core.recources.generated.resources.dogs_screen_title
-import kmmpr.core.recources.generated.resources.ic_arrow_back
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import ru.braveowlet.kmmpr.components.dogs.domain.model.Dog
+import ru.braveowlet.kmmpr.core.resources.Res
+import ru.braveowlet.kmmpr.core.resources.dogs_screen_button_get_dog
+import ru.braveowlet.kmmpr.core.resources.dogs_screen_button_save_dog
+import ru.braveowlet.kmmpr.core.resources.dogs_screen_title
+import ru.braveowlet.kmmpr.core.resources.ic_arrow_back
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenState
 
-@OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DogsScreenContent(
     state: DogsScreenState,

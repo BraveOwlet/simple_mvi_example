@@ -2,7 +2,12 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.sqldelightPlugin)
+}
+
+compose.resources {
+    generateResClass = never
 }
 
 sqldelight {
@@ -12,13 +17,7 @@ sqldelight {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = libs.versions.java.version.int.get()
-            }
-        }
-    }
+    androidTarget()
 
     listOf(
         iosX64(),
@@ -68,19 +67,12 @@ kotlin {
 android {
     namespace = "ru.braveowlet.kmmpr.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-
     defaultConfig {
         applicationId = "ru.braveowlet.kmmpr"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     packaging {
         resources {
@@ -93,8 +85,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
-        targetCompatibility = JavaVersion.valueOf(libs.versions.java.version.string.get())
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
