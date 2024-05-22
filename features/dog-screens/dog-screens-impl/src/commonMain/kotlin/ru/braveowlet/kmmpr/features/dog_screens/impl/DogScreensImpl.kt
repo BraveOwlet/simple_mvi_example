@@ -5,16 +5,9 @@ import ru.braveowlet.kmmpr.features.dog_screens.api.DogScreensApi
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.DogsScreen
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.SavedDogsScreen
 
-internal class DogScreensImpl(
-    private val dogsScreenTag: String,
-    private val savedDogsScreenTag: String
-) : DogScreensApi {
+internal class DogScreensImpl: DogScreensApi {
 
-    override fun dogsScreen(): Screen = DogsScreen(
-        tag = dogsScreenTag
-    )
+    override fun dogsScreen(): Screen = DogsScreen()
 
-    override fun savedDogsScreen(): Screen = SavedDogsScreen(
-        tag = savedDogsScreenTag
-    )
+    override fun savedDogsScreen(): Screen = SavedDogsScreen()
 }

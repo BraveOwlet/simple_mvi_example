@@ -29,10 +29,10 @@ internal class DogsScreenModel(
     override suspend fun invokeActor(action: DogsScreenAction) =
         when (action) {
             is DogsScreenAction.ClickButtonBack ->
-                mvi.push(DogsScreenEvent.NavigateToBack)
+                push(DogsScreenEvent.NavigateToBack)
 
             is DogsScreenAction.ClickButtonGetDog ->
-                mvi.push(processClickButtonGetDog(getRandomDogUseCase))
+                push(processClickButtonGetDog(getRandomDogUseCase))
 
             is DogsScreenAction.ClickButtonSaveDog ->
                 saveDogUseCase(action.dog)

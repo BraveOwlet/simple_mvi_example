@@ -19,8 +19,6 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.sqldelight.runtime)
-            implementation(libs.sqldelight.coroutines)
         }
     }
 }

@@ -16,9 +16,9 @@ internal class MainScreenModel(
     override suspend fun invokeActor(action: MainScreenAction) =
         when (action) {
             is MainScreenAction.ClickButtonDogsScreen ->
-                mvi.push(MainScreenEvent.NavigateToDogsScreen)
+                push(MainScreenEvent.NavigateToDogsScreen)
 
             is MainScreenAction.ClickButtonSavedDogsScreen ->
-                mvi.push(MainScreenEvent.NavigateToSavedDogsScreen)
+                push(MainScreenEvent.NavigateToSavedDogsScreen)
         }
 }

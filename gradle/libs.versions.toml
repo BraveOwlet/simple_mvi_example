@@ -26,6 +26,7 @@ kotlin = "2.0.0"
 kotlinx-coroutines = "1.8.0"
 kotlinx-serialization = "1.6.3"
 kotlinx-datetime = "0.6.0-RC.2"
+ksp = "2.0.0-1.0.21"
 
 # Koin
 koin = "3.5.3"
@@ -40,8 +41,9 @@ voyager = "1.1.0-alpha03"
 # Coil
 coil = "3.0.0-alpha04"
 
-# Sqldelight
-sqldelight = "2.0.2"
+# Room
+androidxRoom = "2.7.0-alpha01"
+sqlite = "2.5.0-alpha01"
 
 # Test
 junit = "4.13.2"
@@ -108,11 +110,11 @@ voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voy
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
 
-# Sqldelight
-sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
-sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
-sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
-sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+# Room
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
 
 # Fix
 touchlab-stately-common = {module = "co.touchlab:stately-common", version.ref = "stately"}
@@ -126,6 +128,7 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 # Android
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -135,5 +138,5 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
-# Sqldelight
-sqldelightPlugin = {id = "app.cash.sqldelight", version.ref = "sqldelight"}
+# Room
+room = { id = "androidx.room", version.ref = "androidxRoom" }

@@ -20,7 +20,7 @@ internal class SavedDogsScreenModel(
 
     override suspend fun invokeBootstrap() {
         observeRandomDogUseCase()
-            .onEach { mvi.push(SavedDogsScreenEffect.DogsUpdated(it)) }
+            .onEach { push(SavedDogsScreenEffect.DogsUpdated(it)) }
             .launchIn(screenModelScope)
     }
 
@@ -34,6 +34,6 @@ internal class SavedDogsScreenModel(
     override suspend fun invokeActor(action: SavedDogsScreenAction) =
         when (action) {
             SavedDogsScreenAction.ClickButtonBack ->
-                mvi.push(SavedDogsScreenEvent.NavigateToBack)
+                push(SavedDogsScreenEvent.NavigateToBack)
         }
 }

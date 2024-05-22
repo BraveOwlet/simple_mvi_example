@@ -1,4 +1,3 @@
-import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -10,6 +9,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.kotlinAndroid).apply(false)
     alias(libs.plugins.kotlinJvm) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.room) apply false
 }
 
 task("clean", Delete::class) {
