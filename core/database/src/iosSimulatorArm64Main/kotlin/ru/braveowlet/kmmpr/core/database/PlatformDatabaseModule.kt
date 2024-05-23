@@ -11,7 +11,7 @@ import platform.Foundation.NSHomeDirectory
 
 internal actual fun platformDatabaseModule(
     fileName: String,
-): Module = module {
+): Module = module(createdAtStart = true) {
     single<AppDatabase> {
         getDatabase(fileName)
     }

@@ -5,6 +5,5 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DogEntity(
-    @PrimaryKey(autoGenerate = true)  val id: Long = 0L,
-    val url: String,
+    @PrimaryKey val url: String,
 )

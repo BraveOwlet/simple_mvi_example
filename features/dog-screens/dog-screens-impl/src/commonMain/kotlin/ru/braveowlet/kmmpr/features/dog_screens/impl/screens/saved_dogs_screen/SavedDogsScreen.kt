@@ -4,15 +4,10 @@ import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.flow.Flow
-import ru.braveowlet.common.mvi.general.Mvi
-import ru.braveowlet.common.mvi.general.collectEvent
 import ru.braveowlet.common.mvi.impl.MviView
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenAction
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenEvent
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenState
+import ru.braveowlet.common.mvi.impl.collectEvent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.compose.SavedDogsScreenContent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.mvi.SavedDogsScreenAction
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.mvi.SavedDogsScreenEffect
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.mvi.SavedDogsScreenEvent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.saved_dogs_screen.mvi.SavedDogsScreenState
 

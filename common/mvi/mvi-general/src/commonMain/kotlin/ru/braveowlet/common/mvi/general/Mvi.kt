@@ -25,7 +25,6 @@ import ru.braveowlet.common.mvi.general.internal.MviImpl
 import ru.braveowlet.common.mvi.general.internal.MviLogger
 import kotlin.reflect.KClass
 
-// Objects
 interface MviAction
 
 interface MviEvent
@@ -33,10 +32,9 @@ interface MviEvent
 interface MviEffect
 
 interface MviState {
-    fun getLogString() = this.toString()
+    val log get() = this.toString()
 }
 
-// Mvi specification
 interface Mvi
 <Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState> {
     val stateFlow: StateFlow<State>
@@ -46,18 +44,16 @@ interface Mvi
     fun push(event: Event)
 
     companion object {
-        fun <Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState> create(
-            defaultState: State,
+        fun <Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState> build(
             tag: String,
-            logEnable: Boolean,
+            defaultState: State,
             scope: CoroutineScope,
-            dispatcher: CoroutineDispatcher,
-            reducer: (Effect, State) -> State,
-            bootstrap: suspend () -> Unit,
-            actor: suspend (Action) -> Unit,
+            dispatcher: CoroutineDispatcher = Dispatchers.Default,
+            reducer: (Effect, State) -> State = { _, state -> state },
+            bootstrap: suspend () -> Unit = {},
+            actor: suspend (Action) -> Unit = {},
         ): Mvi<Action, Effect, Event, State> = MviImpl(
             tag = tag,
-            logEnable = logEnable,
             defaultState = defaultState,
             scope = scope,
             dispatcher = dispatcher,

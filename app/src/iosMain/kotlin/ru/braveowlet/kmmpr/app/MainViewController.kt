@@ -23,4 +23,5 @@ fun initKoin() {
             appModules
         )
     }
+    initApp()
 }

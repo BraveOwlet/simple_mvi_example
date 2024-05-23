@@ -13,5 +13,6 @@ class App : Application() {
                 appModules
             )
         }
+        initApp()
     }
 }

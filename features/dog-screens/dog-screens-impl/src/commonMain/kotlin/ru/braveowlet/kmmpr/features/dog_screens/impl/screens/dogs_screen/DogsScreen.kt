@@ -6,12 +6,10 @@ import androidx.compose.runtime.remember
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.flow.Flow
-import ru.braveowlet.common.mvi.general.Mvi
-import ru.braveowlet.common.mvi.general.collectEvent
 import ru.braveowlet.common.mvi.impl.MviView
+import ru.braveowlet.common.mvi.impl.collectEvent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.compose.DogsScreenContent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenAction
-import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenEffect
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenEvent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenState
 

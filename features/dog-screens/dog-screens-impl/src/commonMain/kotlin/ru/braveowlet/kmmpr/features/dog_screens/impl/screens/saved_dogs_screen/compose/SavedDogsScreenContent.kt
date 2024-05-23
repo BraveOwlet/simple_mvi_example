@@ -47,11 +47,11 @@ internal fun SavedDogsScreenContent(
                 },
             )
         }
-    ) {
+    ) { paddings ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it),
+                .padding(paddings),
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxWidth()

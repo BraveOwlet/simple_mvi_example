@@ -5,13 +5,11 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import kotlinx.coroutines.flow.Flow
 import org.koin.compose.koinInject
-import ru.braveowlet.common.mvi.general.Mvi
-import ru.braveowlet.common.mvi.general.collectEvent
 import ru.braveowlet.common.mvi.impl.MviView
+import ru.braveowlet.common.mvi.impl.collectEvent
 import ru.braveowlet.kmmpr.features.dog_screens.api.DogScreensApi
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.compose.MainScreenContent
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenAction
-import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenEffect
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenEvent
 import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenState
 

@@ -4,17 +4,18 @@ import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logger as KtorLogger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import ru.braveowlet.common.logger.DefaultLogger
+import ru.braveowlet.common.logger.LogType
+import ru.braveowlet.common.logger.Logger
 
-internal fun createKtorClient(): HttpClient = HttpClient{
-    install(HttpTimeout){
+internal fun createKtorClient(): HttpClient = HttpClient {
+    install(HttpTimeout) {
         requestTimeoutMillis = 15_000
     }
-    install(ContentNegotiation){
+    install(ContentNegotiation) {
         json(Json {
             ignoreUnknownKeys = true
             prettyPrint = true
@@ -22,9 +23,12 @@ internal fun createKtorClient(): HttpClient = HttpClient{
     }
     install(Logging) {
         level = LogLevel.ALL
-        logger = object : Logger {
+        logger = object : KtorLogger {
             override fun log(message: String) {
-                DefaultLogger.log("NETWORK", message)
+                Logger.log(
+                    message = message,
+                    type = LogType.NETWORK,
+                )
             }
         }
     }

@@ -2,6 +2,7 @@ package ru.braveowlet.common.mvi.general.internal
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
@@ -17,7 +18,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import ru.braveowlet.common.mvi.general.Mvi
@@ -25,20 +25,22 @@ import ru.braveowlet.common.mvi.general.MviAction
 import ru.braveowlet.common.mvi.general.MviEffect
 import ru.braveowlet.common.mvi.general.MviEvent
 import ru.braveowlet.common.mvi.general.MviState
+import ru.braveowlet.common.utils.retryIfError
+import ru.braveowlet.common.utils.supervisorHandler
+import ru.braveowlet.common.utils.supervisorLaunch
 
 internal class MviImpl
 <Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState>(
-    defaultState: State,
     tag: String,
-    logEnable: Boolean,
+    defaultState: State,
     scope: CoroutineScope,
-    dispatcher: CoroutineDispatcher,
-    reducer: (Effect, State) -> State ,
-    bootstrap: suspend () -> Unit,
-    actor: suspend (Action) -> Unit,
+    dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    reducer: (Effect, State) -> State = { _, state -> state },
+    bootstrap: suspend () -> Unit = {},
+    actor: suspend (Action) -> Unit = {},
 ) : Mvi<Action, Effect, Event, State> {
 
-    private val logger = MviLogger<Action, Effect, Event, State>(tag, logEnable)
+    private val logger = MviLogger<Action, Effect, Event, State>(tag)
 
     private val eventChannel: Channel<Event> = Channel(UNLIMITED)
     private val effectChannel: Channel<Effect> = Channel(UNLIMITED)
@@ -60,31 +62,29 @@ internal class MviImpl
         bufferStateFlow
             .onStart { logger.log(defaultState) }
             .onStart {
-                scope.launch(dispatcher) {
+                scope.launch(dispatcher + supervisorHandler(logger::logUnknown)) {
                     actionChannel
                         .receiveAsFlow()
                         .onEach(logger::log)
-                        .onEach { launch { actor(it) } }
-                        .catchAndRetry(logger::logActor)
+                        .onEach { launchActor(it, actor) }
+                        .retryIfError()
                         .launchIn(this)
 
                     effectChannel
                         .receiveAsFlow()
                         .onEach(logger::log)
                         .map { reducer(it, stateFlow.value) }
-                        .onEach { bufferStateFlow.emit(it) }
+                        .onEach(bufferStateFlow::emit)
                         .onEach(logger::log)
-                        .catchAndRetry { logger.logReducer(it) }
+                        .retryIfError()
                         .launchIn(this)
 
-                    launch {
-                        bootstrap()
-                        logger.logBootstrap()
-                    }
+                    launchBootstrap(bootstrap)
                 }
             }
             .distinctUntilChanged()
             .flowOn(dispatcher)
+            .retryIfError()
             .stateIn(scope, SharingStarted.Lazily, defaultState)
     }
 
@@ -99,11 +99,19 @@ internal class MviImpl
     override fun push(event: Event) = eventChannel
         .trySend(event)
         .getOrElse { logger.log(event, it) }
-}
 
-private fun <T> Flow<T>.catchAndRetry(
-    onError: (Throwable) -> Unit,
-): Flow<T> = retryWhen { cause, _ ->
-    onError(cause)
-    true
+    private suspend fun launchActor(
+        action: Action,
+        actor: suspend (Action) -> Unit,
+    ) = supervisorLaunch(
+        onError = logger::logActor,
+        block = { actor(action) }
+    )
+
+    private suspend fun launchBootstrap(
+        bootstrap: suspend () -> Unit
+    ) = supervisorLaunch(
+        onError = logger::logBootstrap,
+        block = { bootstrap(); logger.logBootstrap() }
+    )
 }
