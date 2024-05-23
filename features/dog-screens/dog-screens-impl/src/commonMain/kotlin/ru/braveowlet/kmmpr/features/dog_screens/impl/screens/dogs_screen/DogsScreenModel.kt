@@ -18,7 +18,7 @@ internal class DogsScreenModel(
     tag = tag,
 ) {
 
-    override fun invokeReducer(
+    override fun reducer(
         effect: DogsScreenEffect,
         previousState: DogsScreenState
     ): DogsScreenState = when (effect) {
@@ -26,17 +26,16 @@ internal class DogsScreenModel(
         is DogsScreenEffect.DogLoaded -> previousState.setDog(effect.dog)
     }
 
-    override suspend fun invokeActor(action: DogsScreenAction) =
-        when (action) {
-            is DogsScreenAction.ClickButtonBack ->
-                push(DogsScreenEvent.NavigateToBack)
+    override suspend fun actor(action: DogsScreenAction) = when (action) {
+        is DogsScreenAction.ClickButtonBack ->
+            push(DogsScreenEvent.NavigateToBack)
 
-            is DogsScreenAction.ClickButtonGetDog ->
-                push(processClickButtonGetDog(getRandomDogUseCase))
+        is DogsScreenAction.ClickButtonGetDog ->
+            push(processClickButtonGetDog(getRandomDogUseCase))
 
-            is DogsScreenAction.ClickButtonSaveDog ->
-                saveDogUseCase(action.dog)
-        }
+        is DogsScreenAction.ClickButtonSaveDog ->
+            saveDogUseCase(action.dog)
+    }
 
     private suspend fun processClickButtonGetDog(
         getRandomDogUseCase: GetRandomDogUseCase,

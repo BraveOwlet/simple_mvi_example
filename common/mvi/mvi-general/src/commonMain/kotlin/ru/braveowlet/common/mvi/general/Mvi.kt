@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import ru.braveowlet.common.mvi.general.internal.MviImpl
 import ru.braveowlet.common.mvi.general.internal.MviLogger
+import kotlin.reflect.KClass
 
 // Objects
 interface MviAction
@@ -33,19 +34,6 @@ interface MviEffect
 
 interface MviState {
     fun getLogString() = this.toString()
-}
-
-// Components
-fun interface MviReducer<Effect : MviEffect, State : MviState> {
-    fun invokeReducer(effect: Effect, previousState: State): State
-}
-
-fun interface MviBootstrap {
-    suspend fun invokeBootstrap()
-}
-
-fun interface MviActor<Action : MviAction> {
-    suspend fun invokeActor(action: Action)
 }
 
 // Mvi specification
@@ -64,9 +52,9 @@ interface Mvi
             logEnable: Boolean,
             scope: CoroutineScope,
             dispatcher: CoroutineDispatcher,
-            reducer: MviReducer<Effect, State>,
-            bootstrap: MviBootstrap,
-            actor: MviActor<Action>,
+            reducer: (Effect, State) -> State,
+            bootstrap: suspend () -> Unit,
+            actor: suspend (Action) -> Unit,
         ): Mvi<Action, Effect, Event, State> = MviImpl(
             tag = tag,
             logEnable = logEnable,

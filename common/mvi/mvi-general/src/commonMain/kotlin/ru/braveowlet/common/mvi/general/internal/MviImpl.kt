@@ -22,11 +22,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import ru.braveowlet.common.mvi.general.Mvi
 import ru.braveowlet.common.mvi.general.MviAction
-import ru.braveowlet.common.mvi.general.MviActor
-import ru.braveowlet.common.mvi.general.MviBootstrap
 import ru.braveowlet.common.mvi.general.MviEffect
 import ru.braveowlet.common.mvi.general.MviEvent
-import ru.braveowlet.common.mvi.general.MviReducer
 import ru.braveowlet.common.mvi.general.MviState
 
 internal class MviImpl
@@ -36,9 +33,9 @@ internal class MviImpl
     logEnable: Boolean,
     scope: CoroutineScope,
     dispatcher: CoroutineDispatcher,
-    reducer: MviReducer<Effect, State>,
-    bootstrap: MviBootstrap,
-    actor: MviActor<Action>,
+    reducer: (Effect, State) -> State ,
+    bootstrap: suspend () -> Unit,
+    actor: suspend (Action) -> Unit,
 ) : Mvi<Action, Effect, Event, State> {
 
     private val logger = MviLogger<Action, Effect, Event, State>(tag, logEnable)
@@ -67,20 +64,23 @@ internal class MviImpl
                     actionChannel
                         .receiveAsFlow()
                         .onEach(logger::log)
-                        .onEach { launch { actor.invokeActor(it) } }
+                        .onEach { launch { actor(it) } }
                         .catchAndRetry(logger::logActor)
                         .launchIn(this)
 
                     effectChannel
                         .receiveAsFlow()
                         .onEach(logger::log)
-                        .map { reducer.invokeReducer(it, stateFlow.value) }
+                        .map { reducer(it, stateFlow.value) }
                         .onEach { bufferStateFlow.emit(it) }
                         .onEach(logger::log)
                         .catchAndRetry { logger.logReducer(it) }
                         .launchIn(this)
 
-                    bootstrap.launchIn(this, logger::logBootstrap)
+                    launch {
+                        bootstrap()
+                        logger.logBootstrap()
+                    }
                 }
             }
             .distinctUntilChanged()
@@ -99,18 +99,6 @@ internal class MviImpl
     override fun push(event: Event) = eventChannel
         .trySend(event)
         .getOrElse { logger.log(event, it) }
-}
-
-private fun MviBootstrap.launchIn(
-    coroutineScope: CoroutineScope,
-    onFinish: (Throwable?) -> Unit,
-) = coroutineScope.launch {
-    try {
-        invokeBootstrap()
-        onFinish(null)
-    } catch (t: Throwable) {
-        onFinish(t)
-    }
 }
 
 private fun <T> Flow<T>.catchAndRetry(

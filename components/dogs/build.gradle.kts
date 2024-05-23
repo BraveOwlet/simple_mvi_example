@@ -14,11 +14,11 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.core.network)
-            implementation(projects.core.database)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.androidx.room.runtime)
         }
     }
 }
@@ -32,3 +32,4 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 }
+

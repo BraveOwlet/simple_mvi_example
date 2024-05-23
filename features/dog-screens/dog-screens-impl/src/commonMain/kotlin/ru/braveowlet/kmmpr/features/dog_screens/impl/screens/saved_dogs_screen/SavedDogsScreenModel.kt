@@ -18,22 +18,21 @@ internal class SavedDogsScreenModel(
     tag = tag,
 ) {
 
-    override suspend fun invokeBootstrap() {
+    override suspend fun bootstrap() {
         observeRandomDogUseCase()
             .onEach { push(SavedDogsScreenEffect.DogsUpdated(it)) }
             .launchIn(screenModelScope)
     }
 
-    override fun invokeReducer(
+    override fun reducer(
         effect: SavedDogsScreenEffect,
         previousState: SavedDogsScreenState
     ): SavedDogsScreenState = when (effect) {
         is SavedDogsScreenEffect.DogsUpdated -> previousState.setDog(effect.dogs)
     }
 
-    override suspend fun invokeActor(action: SavedDogsScreenAction) =
-        when (action) {
-            SavedDogsScreenAction.ClickButtonBack ->
-                push(SavedDogsScreenEvent.NavigateToBack)
-        }
+    override suspend fun actor(action: SavedDogsScreenAction) = when (action) {
+        SavedDogsScreenAction.ClickButtonBack ->
+            push(SavedDogsScreenEvent.NavigateToBack)
+    }
 }

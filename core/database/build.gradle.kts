@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -19,6 +21,7 @@ kotlin {
     sourceSets{
         commonMain.dependencies {
             implementation(projects.common.logger)
+            implementation(projects.components.dogs)
             implementation(libs.koin.core)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
