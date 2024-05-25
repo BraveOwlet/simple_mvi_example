@@ -1,9 +1,8 @@
 package ru.braveowlet.kmmpr.components.dogs.data.mapper
 
 import ru.braveowlet.kmmpr.components.dogs.data.dto.DogDto
-import ru.braveowlet.kmmpr.components.dogs.data.entity.DogEntity
 import ru.braveowlet.kmmpr.components.dogs.domain.model.Dog
-import kotlin.random.Random
+import ru.braveowlet.kmmpr.core.database.table.dogs.DogEntity
 
 internal fun DogDto.toDomain(): Dog = Dog(
     url = this.message

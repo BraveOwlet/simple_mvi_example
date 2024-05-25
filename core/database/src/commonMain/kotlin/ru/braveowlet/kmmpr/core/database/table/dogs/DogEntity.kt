@@ -1,4 +1,4 @@
-package ru.braveowlet.kmmpr.components.dogs.data.entity
+package ru.braveowlet.kmmpr.core.database.table.dogs
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

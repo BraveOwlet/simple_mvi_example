@@ -2,8 +2,8 @@ package ru.braveowlet.kmmpr.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ru.braveowlet.kmmpr.components.dogs.data.dao.DogsDao
-import ru.braveowlet.kmmpr.components.dogs.data.entity.DogEntity
+import ru.braveowlet.kmmpr.core.database.table.dogs.DogEntity
+import ru.braveowlet.kmmpr.core.database.table.dogs.DogsDao
 
 @Database(
     entities = [

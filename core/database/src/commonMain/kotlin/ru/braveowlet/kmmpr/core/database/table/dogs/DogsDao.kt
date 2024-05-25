@@ -1,16 +1,15 @@
-package ru.braveowlet.kmmpr.components.dogs.data.dao
+package ru.braveowlet.kmmpr.core.database.table.dogs
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import ru.braveowlet.kmmpr.components.dogs.data.entity.DogEntity
 
 @Dao
 interface DogsDao{
 
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insert(entity : DogEntity)
 
     @Query("SELECT * FROM DogEntity")
@@ -19,4 +18,3 @@ interface DogsDao{
     @Query("SELECT * FROM DogEntity")
     fun observe() : Flow<List<DogEntity>>
 }
-
