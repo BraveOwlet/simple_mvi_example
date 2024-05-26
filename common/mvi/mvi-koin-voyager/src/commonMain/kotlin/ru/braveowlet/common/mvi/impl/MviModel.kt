@@ -26,6 +26,7 @@ abstract class MviModel<Action : MviAction, Effect : MviEffect, Event : MviEvent
             tag = tag,
             defaultState = defaultState,
             scope = screenModelScope,
+            dispatcher = Dispatchers.Main,
             reducer = ::reducer,
             actor = ::actor,
             bootstrap = ::bootstrap,

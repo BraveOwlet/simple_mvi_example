@@ -48,7 +48,7 @@ interface Mvi
             tag: String,
             defaultState: State,
             scope: CoroutineScope,
-            dispatcher: CoroutineDispatcher = Dispatchers.Default,
+            dispatcher: CoroutineDispatcher,
             reducer: (Effect, State) -> State = { _, state -> state },
             bootstrap: suspend () -> Unit = {},
             actor: suspend (Action) -> Unit = {},

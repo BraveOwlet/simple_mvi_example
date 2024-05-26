@@ -6,11 +6,8 @@ import ru.braveowlet.common.mvi.general.MviAction
 import ru.braveowlet.common.mvi.general.MviEffect
 import ru.braveowlet.common.mvi.general.MviEvent
 import ru.braveowlet.common.mvi.general.MviState
+import ru.braveowlet.common.utils.ThreadUtils
 import ru.braveowlet.common.utils.getRandomStringNumber
-import ru.braveowlet.common.utils.getThreadName
-import kotlin.math.pow
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 internal class MviLogger<Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState>(
     private val tag: String,
@@ -28,7 +25,7 @@ internal class MviLogger<Action : MviAction, Effect : MviEffect, Event : MviEven
                     " -> $messageWithError"
 
             Logger.log(
-                message = "[${getThreadName()}] $tagWithMessage",
+                message = "[${ThreadUtils.getThreadName()}] $tagWithMessage",
                 tag = "${this.tag} [$instanceId]",
                 type = LogType.MVI
             )

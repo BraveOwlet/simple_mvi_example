@@ -35,7 +35,6 @@ include(":app")
 include(":common:mvi:mvi-general")
 include(":common:mvi:mvi-koin-voyager")
 include(":common:logger")
-include(":common:platform")
 include(":common:utils")
 
 // CORE

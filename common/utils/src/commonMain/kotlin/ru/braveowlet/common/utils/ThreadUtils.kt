@@ -1,3 +1,6 @@
 package ru.braveowlet.common.utils
 
-expect fun getThreadName() : String
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
+expect object ThreadUtils {
+    var getThreadName: () -> String
+}

@@ -42,4 +42,3 @@ private inline fun <reified T : MviModel<*, *, *, *>> MviView<*, *, *>.getMviMod
 inline fun <reified Event : MviEvent> Flow<Event>.collectEvent(
     crossinline onEvent: suspend (Event) -> Unit,
 ) = LaunchedEffect(Unit) { collect { onEvent(it) } }
-
