@@ -123,9 +123,6 @@ sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
 # Fix
 touchlab-stately-common = {module = "co.touchlab:stately-common", version.ref = "stately"}
 
-# Test
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-
 # Detekt/Ktlint
 ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
 

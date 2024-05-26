@@ -19,6 +19,7 @@ fun MainViewController() = ComposeUIViewController {
     }
 }
 
+@Suppress("unused")
 fun initApp(
     iosUtils: IosUtils
 ) {

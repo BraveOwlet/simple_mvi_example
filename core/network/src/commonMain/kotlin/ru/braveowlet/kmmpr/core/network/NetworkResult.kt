@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package ru.braveowlet.kmmpr.core.network
 
 import io.ktor.client.HttpClient

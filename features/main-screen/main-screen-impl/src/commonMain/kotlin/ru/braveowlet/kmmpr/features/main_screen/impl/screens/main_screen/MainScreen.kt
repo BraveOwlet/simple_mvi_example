@@ -35,7 +35,6 @@ internal class MainScreen : MviView<MainScreenAction, MainScreenEvent, MainScree
         }
 
         MainScreenContent(
-            state = state,
             onClickButtonDogsScreen = {
                 pushAction(MainScreenAction.ClickButtonDogsScreen)
             },

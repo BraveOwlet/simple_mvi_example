@@ -21,12 +21,10 @@ import ru.braveowlet.kmmpr.core.resources.Res
 import ru.braveowlet.kmmpr.core.resources.main_screen_button_go_to_dogs_screen
 import ru.braveowlet.kmmpr.core.resources.main_screen_button_go_to_saved_dogs_screen
 import ru.braveowlet.kmmpr.core.resources.main_screen_title
-import ru.braveowlet.kmmpr.features.main_screen.impl.screens.main_screen.mvi.MainScreenState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MainScreenContent(
-    state: MainScreenState,
     onClickButtonDogsScreen: () -> Unit,
     onClickButtonSavedDogsScreen: () -> Unit,
 ) {

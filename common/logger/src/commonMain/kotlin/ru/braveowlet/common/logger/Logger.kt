@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package ru.braveowlet.common.logger
 
 object Logger {
