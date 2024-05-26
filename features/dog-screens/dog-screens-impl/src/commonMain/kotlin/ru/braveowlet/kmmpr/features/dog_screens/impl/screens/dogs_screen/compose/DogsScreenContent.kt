@@ -75,7 +75,7 @@ internal fun DogsScreenContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-        ){
+        ) {
             if (state.dog != null) {
                 AsyncImage(
                     modifier = Modifier.fillMaxWidth(),
@@ -85,6 +85,5 @@ internal fun DogsScreenContent(
                 )
             }
         }
-
     }
 }

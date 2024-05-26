@@ -21,8 +21,8 @@ internal class MviLogger<Action : MviAction, Effect : MviEffect, Event : MviEven
                 ?: message
 
             val tagWithMessage = tag +
-                    ERROR_TAG.takeIf { error != null }?.let { "_$it" }.orEmpty() +
-                    " -> $messageWithError"
+                ERROR_TAG.takeIf { error != null }?.let { "_$it" }.orEmpty() +
+                " -> $messageWithError"
 
             Logger.log(
                 message = "[${ThreadUtils.getThreadName()}] $tagWithMessage",
@@ -73,4 +73,3 @@ internal class MviLogger<Action : MviAction, Effect : MviEffect, Event : MviEven
         private const val DEFAULT_INSTANCE_ID_LENGTH = 4U
     }
 }
-

@@ -39,8 +39,6 @@ private fun getDatabaseBuilder(
     .setDriver(BundledSQLiteDriver())
     .setQueryCoroutineContext(Dispatchers.IO)
 
-
-
 private fun getDatabase(
     context: Context,
     fileName: String,

@@ -9,7 +9,7 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    sourceSets{
+    sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
         }

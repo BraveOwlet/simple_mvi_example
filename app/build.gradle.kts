@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
+apply { from("../tools/hooks/install-git-hooks.gradle.kts") }
+
 compose.resources {
     generateResClass = never
 }
@@ -85,4 +87,3 @@ android {
         debugImplementation(libs.compose.ui.tooling)
     }
 }
-

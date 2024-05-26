@@ -13,7 +13,7 @@ import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.Dog
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenEvent
 import ru.braveowlet.kmmpr.features.dog_screens.impl.screens.dogs_screen.mvi.DogsScreenState
 
-internal class DogsScreen : MviView<DogsScreenAction, DogsScreenEvent, DogsScreenState>{
+internal class DogsScreen : MviView<DogsScreenAction, DogsScreenEvent, DogsScreenState> {
 
     @Composable
     override fun content(

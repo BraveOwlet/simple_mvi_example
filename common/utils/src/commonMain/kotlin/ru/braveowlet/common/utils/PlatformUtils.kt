@@ -11,4 +11,4 @@ data class Platform(
     val version: String,
 )
 
-expect val platform : Platform
+expect val platform: Platform

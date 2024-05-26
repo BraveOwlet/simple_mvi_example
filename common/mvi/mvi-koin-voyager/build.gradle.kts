@@ -15,7 +15,7 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    sourceSets{
+    sourceSets {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.common.utils)
@@ -30,7 +30,7 @@ kotlin {
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
         }
-        iosMain.dependencies{
+        iosMain.dependencies {
             implementation(libs.touchlab.stately.common)
             implementation(libs.compose.runtime.saveable)
         }

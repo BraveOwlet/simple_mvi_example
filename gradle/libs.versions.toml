@@ -51,6 +51,10 @@ junit = "4.13.2"
 # Stately
 stately = "2.0.6"
 
+# Detect/Ktlint
+detekt = "1.19.0"
+ktlint = "0.44.0"
+
 [libraries]
 # Kotlin
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -122,6 +126,9 @@ touchlab-stately-common = {module = "co.touchlab:stately-common", version.ref = 
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
+# Detekt/Ktlint
+ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+
 [plugins]
 # Kotlin
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -140,3 +147,6 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 
 # Room
 room = { id = "androidx.room", version.ref = "androidxRoom" }
+
+# Detect
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

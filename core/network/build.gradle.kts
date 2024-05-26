@@ -10,7 +10,7 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    sourceSets{
+    sourceSets {
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(libs.koin.core)

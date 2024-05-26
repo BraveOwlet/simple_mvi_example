@@ -1,5 +1,5 @@
 package ru.braveowlet.kmmpr.app
 
 interface IosUtils {
-    fun getThreadName() : String
+    fun getThreadName(): String
 }

@@ -39,8 +39,8 @@ internal fun MainScreenContent(
                     },
                 )
             }
-        ){
-            LazyColumn (
+        ) {
+            LazyColumn(
                 modifier = Modifier
                     .padding(it)
                     .fillMaxSize(),
@@ -54,7 +54,7 @@ internal fun MainScreenContent(
                             .padding(horizontal = 20.dp)
                             .padding(vertical = 20.dp),
                         onClick = onClickButtonDogsScreen
-                    ){
+                    ) {
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
@@ -71,11 +71,11 @@ internal fun MainScreenContent(
                             .padding(horizontal = 20.dp)
                             .padding(bottom = 20.dp),
                         onClick = onClickButtonSavedDogsScreen
-                    ){
+                    ) {
                         Box(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
-                        ){
+                        ) {
                             Text(stringResource(Res.string.main_screen_button_go_to_saved_dogs_screen))
                         }
                     }

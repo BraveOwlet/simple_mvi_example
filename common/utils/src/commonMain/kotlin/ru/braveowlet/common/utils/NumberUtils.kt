@@ -9,7 +9,7 @@ fun getRandomStringNumber(
 ): String {
     val checkedLength = length.toInt()
     val maxRange = 10f.pow(checkedLength).toInt()
-    var random = Random.nextInt(1..< maxRange).toString()
+    var random = Random.nextInt(range = 1..(maxRange - 1)).toString()
     repeat(checkedLength - random.length) {
         random = "0$random"
     }

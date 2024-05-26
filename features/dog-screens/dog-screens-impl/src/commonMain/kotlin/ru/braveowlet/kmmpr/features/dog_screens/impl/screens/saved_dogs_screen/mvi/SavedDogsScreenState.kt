@@ -11,7 +11,7 @@ internal data class SavedDogsScreenState(
         dogs = dogs
     )
 
-    companion object{
+    companion object {
         val DEFAULT = SavedDogsScreenState(
             dogs = emptyList()
         )

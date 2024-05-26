@@ -7,14 +7,14 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface DogsDao{
+interface DogsDao {
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insert(entity : DogEntity)
+    suspend fun insert(entity: DogEntity)
 
     @Query("SELECT * FROM DogEntity")
     suspend fun get(): List<DogEntity>
 
     @Query("SELECT * FROM DogEntity")
-    fun observe() : Flow<List<DogEntity>>
+    fun observe(): Flow<List<DogEntity>>
 }

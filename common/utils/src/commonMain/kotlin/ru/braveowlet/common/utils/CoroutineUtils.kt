@@ -7,9 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.launch
 
-
-fun <T> Flow<T>.retryIfError(
-): Flow<T> = retryWhen { _, _ -> true }
+fun <T> Flow<T>.retryIfError(): Flow<T> =
+    retryWhen { _, _ -> true }
 
 fun supervisorHandler(onError: (Throwable) -> Unit) =
     CoroutineExceptionHandler { _, t -> onError(t) } + SupervisorJob()
