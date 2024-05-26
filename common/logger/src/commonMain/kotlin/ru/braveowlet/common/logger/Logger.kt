@@ -7,7 +7,6 @@ object Logger {
     private val enabled: MutableMap<LogType, Boolean> = mutableMapOf(
         LogType.MVI to true,
         LogType.NETWORK to true,
-        LogType.DATABASE to true,
         LogType.OTHER to true,
     )
 
@@ -24,12 +23,10 @@ object Logger {
     fun init(
         mvi: Boolean = true,
         network: Boolean = true,
-        database: Boolean = true,
         other: Boolean = true,
     ) {
         enabled[LogType.MVI] = mvi
         enabled[LogType.NETWORK] = network
-        enabled[LogType.DATABASE] = database
         enabled[LogType.OTHER] = other
     }
 
