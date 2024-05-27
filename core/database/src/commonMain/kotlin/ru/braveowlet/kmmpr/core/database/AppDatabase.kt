@@ -9,8 +9,10 @@ import ru.braveowlet.kmmpr.core.database.table.dogs.DogsDao
     entities = [
         DogEntity::class,
     ],
-    version = 1
+    version = DATABASE_VERSION
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun dogsDao(): DogsDao
 }
+
+private const val DATABASE_VERSION = 1

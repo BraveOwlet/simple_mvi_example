@@ -5,6 +5,7 @@ import cafe.adriel.voyager.core.model.screenModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import org.koin.core.definition.KoinDefinition
 import org.koin.core.module.Module
 import org.koin.core.parameter.ParametersHolder
 import org.koin.core.qualifier.named
@@ -14,6 +15,7 @@ import ru.braveowlet.common.mvi.general.MviAction
 import ru.braveowlet.common.mvi.general.MviEffect
 import ru.braveowlet.common.mvi.general.MviEvent
 import ru.braveowlet.common.mvi.general.MviState
+import ru.braveowlet.common.mvi.general.createMvi
 import ru.braveowlet.common.utils.simpleNameOrThrow
 
 abstract class MviModel<Action : MviAction, Effect : MviEffect, Event : MviEvent, State : MviState>(
@@ -22,7 +24,7 @@ abstract class MviModel<Action : MviAction, Effect : MviEffect, Event : MviEvent
 ) : ScreenModel, Mvi<Action, Effect, Event, State> {
 
     private val mvi: Mvi<Action, Effect, Event, State> by lazy {
-        Mvi.build(
+        createMvi(
             tag = tag,
             defaultState = defaultState,
             scope = screenModelScope,
@@ -45,6 +47,6 @@ abstract class MviModel<Action : MviAction, Effect : MviEffect, Event : MviEvent
 
 inline fun <reified T : MviView<*, *, *>> Module.provideMviModel(
     crossinline factoryMviModel: Scope.(tag: String, params: ParametersHolder) -> MviModel<*, *, *, *>,
-) = T::class.simpleNameOrThrow.let { tag ->
+): KoinDefinition<MviModel<*, *, *, *>> = T::class.simpleNameOrThrow.let { tag ->
     factory<MviModel<*, *, *, *>>(named(tag)) { params -> factoryMviModel(tag, params) }
 }

@@ -1,7 +1,6 @@
 package ru.braveowlet.kmmpr.core.database
 
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -12,21 +11,16 @@ import platform.Foundation.NSHomeDirectory
 internal actual fun platformDatabaseModule(
     fileName: String,
 ): Module = module {
-    single<AppDatabase>(createdAtStart = true) {
-        getDatabase(fileName)
-    }
+    single<AppDatabase>(createdAtStart = true) { getDatabase(fileName) }
 }
 
-fun getDatabaseBuilder(
+private fun getDatabase(
     fileName: String,
-): RoomDatabase.Builder<AppDatabase> = Room
+): AppDatabase = Room
     .databaseBuilder<AppDatabase>(
         name = NSHomeDirectory() + "/$fileName",
         factory = { AppDatabase::class.instantiateImpl() }
     )
     .setDriver(BundledSQLiteDriver())
     .setQueryCoroutineContext(Dispatchers.IO)
-
-fun getDatabase(
-    fileName: String,
-): AppDatabase = getDatabaseBuilder(fileName).build()
+    .build()
