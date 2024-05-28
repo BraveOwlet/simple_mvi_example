@@ -1,25 +1,54 @@
-rootProject.name = "kmmpr"
+@file:Suppress("UnstableApiUsage")
+
+rootProject.name = "simple_mvi_example"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        google()
-        gradlePluginPortal()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
-include(":androidApp")
-include(":composeApp")
-include(":common:mvi")
+// APP
+include(":app")
 
-include(":features:first_screen")
+// COMMON
+include(":common:mvi:mvi-general")
+include(":common:mvi:mvi-koin-voyager")
+include(":common:logger")
+include(":common:utils")
+
+// CORE
+include(":core:network")
+include(":core:database")
+include(":core:recources")
+
+// FEATURES
+include(":features:main-screen:main-screen-api")
+include(":features:main-screen:main-screen-impl")
+include(":features:dog-screens:dog-screens-api")
+include(":features:dog-screens:dog-screens-impl")
+
+// COMPONENTS
+include(":components:dogs:dogs")

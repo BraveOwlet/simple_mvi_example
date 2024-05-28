@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--> COMMON <-->
+    <string name="app_name">KMM_PR</string>
+    <string name="back">Back</string>
+
+    <!--> MAIN_SCREEN <-->
+    <string name="main_screen_title">Main Screen</string>
+    <string name="main_screen_button_go_to_dogs_screen">Dogs Screen</string>
+    <string name="main_screen_button_go_to_saved_dogs_screen">Saved Dogs Screen</string>
+
+    <!--> DOGS_SCREEN <-->
+    <string name="dogs_screen_title">Dogs Screen</string>
+    <string name="dogs_screen_button_get_dog">Get</string>
+    <string name="dogs_screen_button_save_dog">Save</string>
+
+    <!--> SAVED_DOGS_SCREEN <-->
+    <string name="saved_dogs_screen_title">Saved Dogs Screen</string>
+</resources>
