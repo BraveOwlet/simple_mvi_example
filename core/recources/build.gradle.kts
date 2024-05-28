@@ -7,7 +7,7 @@ plugins {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "ru.braveowlet.kmmpr.core.resources"
+    packageOfResClass = "ru.braveowlet.simple_mvi_example.core.resources"
     generateResClass = auto
 }
 
@@ -29,7 +29,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.core.recources"
+    namespace = "ru.braveowlet.simple_mvi_example.core.recources"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

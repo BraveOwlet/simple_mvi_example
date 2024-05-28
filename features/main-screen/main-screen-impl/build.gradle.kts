@@ -42,7 +42,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.features.main_screen.impl"
+    namespace = "ru.braveowlet.simple_mvi_example.features.main_screen.impl"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

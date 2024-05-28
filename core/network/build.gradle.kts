@@ -30,7 +30,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.core.network"
+    namespace = "ru.braveowlet.simple_mvi_example.core.network"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

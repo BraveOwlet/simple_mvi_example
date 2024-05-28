@@ -29,7 +29,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.features.dogs_screen.api"
+    namespace = "ru.braveowlet.simple_mvi_example.features.dogs_screen.api"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

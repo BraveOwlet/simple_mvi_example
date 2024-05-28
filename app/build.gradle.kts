@@ -21,7 +21,7 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "app"
-            binaryOptions["bundleId"] = "ru.braveowlet.kmmpr.app"
+            binaryOptions["bundleId"] = "ru.braveowlet.simple_mvi_example.app"
         }
     }
 
@@ -60,10 +60,10 @@ kotlin {
 }
 
 android {
-    namespace = "ru.braveowlet.kmmpr.app"
+    namespace = "ru.braveowlet.simple_mvi_example.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        applicationId = "ru.braveowlet.kmmpr"
+        applicationId = "ru.braveowlet.simple_mvi_example"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
